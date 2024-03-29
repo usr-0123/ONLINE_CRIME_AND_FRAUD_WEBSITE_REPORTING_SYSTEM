@@ -1,0 +1,35 @@
+// #103777,
+// #0b2651
+
+.HowItWorks {
+
+    .HowItWorksSteps {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        gap: 10px;
+        
+        li {
+            span {
+                font-weight: 1000;
+                color: #fff;
+            }
+            p {
+                font-weight: 1000;
+                color: #fff;
+            }
+        }
+
+        .even {
+            background-color: #103777;
+            padding: 10px;
+            border-radius: 20px 0 20px 0;
+        }
+
+        .odd {
+            background-color: #0b2651;
+            padding: 10px;
+            border-radius: 0 20px 0 20px;
+        }
+    }
+}

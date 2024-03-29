@@ -9,23 +9,18 @@ const Navbar = () => {
   const items = [
     {
       name: "Home",
-      icon: "",
       path: "/mainPage"
     },
     {
       name: "How it works",
-      icon: "",
       path: "/howItWorks"
     },
     {
       name: "Contact Us",
-      icon: "",
       path: "/contactUs"
     },
     {
       name: "About Us",
-      icon: "",
-      path: "/aboutUs"
     },
   ];
 
@@ -38,13 +33,13 @@ const Navbar = () => {
   return (
     <div className='navbarContainer'>
       <div className='navbarContainerHeader'>
-        <h1>Online Reporting</h1>
+        <h1>Online Reporting System</h1>
       </div>
       <div className='navbarContainerMenu'>
         {items.map((item) => (
           <div key={item.path} className="menu-item" onClick={() => handleItemClick(item.path)}>
             <NavLink style={{ textDecoration: "none" }} to={item.path}>
-             <p>{item.name}</p>
+             <p style={{ textDecoration: "none", color:"#fff", fontWeight:"1000" }}>{item.name}</p>
            </NavLink>
          </div>
         ))}

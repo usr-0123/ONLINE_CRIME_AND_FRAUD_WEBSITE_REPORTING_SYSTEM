@@ -7,7 +7,7 @@ CREATE TABLE tbl_Users (
     First_name VARCHAR(255),
     Last_name VARCHAR(255),
     Password VARCHAR(255),
-    Rank VARCHAR(255)
+    User_rank VARCHAR(255)
 )
 ```
 
