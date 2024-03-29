@@ -21,6 +21,7 @@ const navigate = useNavigate()
         <input type="password" />
       </div>
       <button type="submit" onClick={() => navigate('/mainPage')}>Submit</button>
+      <button type="submit" onClick={() => navigate('/admin/adminDashboard')}>Admin</button>
     </form>
   );
 };

@@ -28,7 +28,8 @@ const SignUpForm = () => {
             <label htmlFor="password">Password</label>
             <input type="password" />
         </div>
-        <button type="submit" onClick={() => navigate('/mainPage')}>Submit</button>
+        <button type="submit" onClick={() => navigate('/mainPage')}>User</button>
+        <button type="submit" onClick={() => navigate('/admin/adminDashboard')}>Admin</button>
     </form>
   );
 };

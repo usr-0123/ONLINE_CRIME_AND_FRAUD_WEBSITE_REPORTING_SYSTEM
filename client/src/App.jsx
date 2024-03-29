@@ -9,6 +9,7 @@ import { Route, Router, Routes } from 'react-router-dom'
 import Home from './pages/home/Home.jsx'
 import Login from './pages/loginSignUp/Login.jsx'
 import SignUp from './pages/loginSignUp/SignUp.jsx'
+import Admin from './pages/home/Admin.jsx'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<Login />}/>
         <Route path='/signUp' element={<SignUp />}/>
         <Route path='*' element={<Home />}/>
+        <Route path='/admin/*' element={<Admin />} />
       </Routes>
     </>
   )
