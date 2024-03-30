@@ -8,6 +8,7 @@ import AboutUs from '../PagesContainer/AboutUs';
 import Status from '../Admin/Status';
 import Categories from '../../components/admin/CrimeCategories'
 import HowItWorks from '../PagesContainer/HowItWorks';
+import Profile from '../profile/Profile';
 
 // Import react
 import React from 'react';
@@ -26,6 +27,7 @@ const Admin = () => {
           <Route path='/status' element = {<Status />} />
           <Route path='/categories' element = {<Categories />} />
           <Route path='/aboutUs' element = {<AboutUs />} />
+          <Route path='/profile' element = {<Profile />} />
         </Routes>
       </div>
     </div>

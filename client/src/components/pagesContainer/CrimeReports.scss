@@ -5,14 +5,24 @@
     .crimeAllReportsUList {
         list-style: none;
         padding: 10px 0 10px 0;
+        width: 100%;
 
-        .crimeAllReportsList {
-            padding: 10px 0 10px 0;
-            overflow: auto;
+        .crimeAllReportsUListHeader {
+            display: flex;
+            justify-content: space-evenly;
 
             .crimeAllReportEntry {
-                background-color: #fff;
-                padding: 10px;
+                width: 16.67%;
+            }
+        }
+
+        .crimeAllReportsList, .crimeAllReportsHeader {
+            padding: 10px;
+            overflow: auto;
+            display: flex;
+
+            .AllReportEntry {
+                width: 16.67%;
             }
         }
     }

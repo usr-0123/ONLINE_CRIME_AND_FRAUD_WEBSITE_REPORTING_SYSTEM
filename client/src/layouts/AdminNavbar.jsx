@@ -1,6 +1,9 @@
 // Import style file
 import './Navbar.scss';
 
+import { FaRegUser } from "react-icons/fa";
+import { TbLogout } from "react-icons/tb";
+
 // Import components
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -26,6 +29,16 @@ const Navbar = () => {
       name: "About Us",
       icon: "",
       path: "/admin/aboutUs"
+    },
+    {
+      name: <FaRegUser style={{width:"30px", height:"30px"}}/>,
+      icon:"",
+      path: "/admin/profile"
+    },
+    {
+      name: <TbLogout style={{width:"30px", height:"30px"}}/>,
+      icon:"",
+      path: "/"
     },
   ];
 

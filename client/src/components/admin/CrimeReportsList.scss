@@ -5,12 +5,10 @@
     .crimeAllReportsUList {
         list-style: none;
         padding: 10px 0 10px 0;
-        // border-radius: 25px;
 
         .crimeAllReportsList {
             padding: 10px 0 10px 0;
             display: flex;
-            // border-radius: 5px;
 
             .crimeAllReportEntry {
                 background-color: #fff;
@@ -22,6 +20,12 @@
 
                 .crimeAllReportEntryHeader {
                     font-weight: 700;
+                }
+
+                .crimeAllReportEntryBtn {
+                    align-self: center;
+                    justify-self: flex-end;
+                    width: 100%;
                 }
             }
         }

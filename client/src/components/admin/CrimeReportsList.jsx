@@ -2,6 +2,8 @@ import React from 'react';
 
 import './CrimeReportsList.scss'
 
+import { FaChevronRight } from "react-icons/fa";
+
 const CrimeReports = () => {
     const crimeEntries = [
         {
@@ -11,7 +13,8 @@ const CrimeReports = () => {
             time: "09:32 AM",
             involvedIndividuals: "Khalif Kairo",
             involvedOrganizations: "Kai & Karo company",
-            evidence: "The car company"
+            evidence: "The car company",
+            action: <FaChevronRight />
         },
         {
             referenceNumber:"dfhgjyuk",
@@ -20,7 +23,8 @@ const CrimeReports = () => {
             time: "09:32 AM",
             involvedIndividuals: "Kabarak University Management",
             involvedOrganizations: "Kabarak University",
-            evidence: "Campus"
+            evidence: "Campus",
+            action: <FaChevronRight />
         },
         {
             referenceNumber:"errgdfh",
@@ -29,14 +33,15 @@ const CrimeReports = () => {
             time: "09:32 AM",
             involvedIndividuals: "General Manager",
             involvedOrganizations: "Cocacola company",
-            evidence: "Company"
+            evidence: "Company",
+            action: <FaChevronRight />
         }
     ]
 
   return (
     <div className="crimeReports">
         <ul className='crimeAllReportsUList'>
-          {crimeEntries.map((entry, index) => (
+            {crimeEntries.map((entry, index) => (
             <li key={index} className='crimeAllReportsList'>
                 <div className='crimeAllReportEntry'>
                     <span className='crimeAllReportEntryHeader'>Reference Number:</span>
@@ -66,7 +71,10 @@ const CrimeReports = () => {
                     <span className='crimeAllReportEntryHeader'>Evidence: </span>
                     <span>{entry.evidence}</span>
                 </div>
-                <div></div>
+                <div className='crimeAllReportEntry'>
+                    <span className='crimeAllReportEntryHeader'>Actions:</span>
+                    <span className='crimeAllReportEntryBtn'>{entry.action}</span>
+                </div>
             </li>
           ))}
         </ul>

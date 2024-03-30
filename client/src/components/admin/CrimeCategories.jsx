@@ -43,16 +43,32 @@ const CrimeCategories = () => {
           {crimeCategories.map((entry, index) => (
             <li key={index} className='crimeCategoriesList'>
                 <div className='crimeCategoriesEntry'>
-                    <span className='crimeCategoriesEntryHeader'>Reference Number:</span>
-                    <span>{entry.name}</span>
+                    <span className='crimeCategoriesEntryHeader'>{entry.name}</span>
                 </div>
                 <div className='crimeCategoriesEntry'>
-                    <span className='crimeCategoriesEntryHeader'>Crime Type: </span>
-                    <span>{entry.reports}</span>
-                </div>
-                <div className='crimeCategoriesEntry'>
-                    <span className='crimeCategoriesEntryHeader'>Status: </span>
-                    <span>{entry.status}</span>
+                    <ul className='crimeCategoriesEntries'>
+                        <div className='crimeCategoriesEntriesHeader'>
+                                    <span>Ref Number</span>
+                                    <span>Date</span>
+                                    <span>Time</span>
+                                    <span>Involved Individuals</span>
+                                    <span>Involved Organizations</span>
+                                    <span>Evidence</span>
+                        </div>
+
+                        {crimeEntries.map((entry, index) => (
+                            <li key={index} className='crimeCategoriesEntriesList'>                                
+                                <div className='crimeCategoriesEntriesListEntries'>
+                                    <span>{entry.referenceNumber}</span>
+                                    <span>{entry.date}</span>
+                                    <span>{entry.time}</span>
+                                    <span>{entry.involvedIndividuals}</span>
+                                    <span>{entry.involvedOrganizations}</span>
+                                    <span>{entry.evidence}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </li>
           ))}

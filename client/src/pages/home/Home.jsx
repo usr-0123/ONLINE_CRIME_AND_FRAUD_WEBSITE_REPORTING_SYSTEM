@@ -7,6 +7,7 @@ import MainPage from '../PagesContainer/MainPage';
 import AboutUs from '../PagesContainer/AboutUs';
 import ContactUs from '../PagesContainer/ContactUs';
 import HowItWorks from '../PagesContainer/HowItWorks';
+import Profile from '../profile/Profile';
 
 // Import react
 import React from 'react';
@@ -24,6 +25,7 @@ const Home = () => {
           <Route path='/howItWorks' element = {<HowItWorks />} />
           <Route path='/contactUs' element = {<ContactUs />} />
           <Route path='/aboutUs' element = {<AboutUs />} />
+          <Route path='/profile' element = {<Profile />} />
         </Routes>
       </div>
     </div>
