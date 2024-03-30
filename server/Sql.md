@@ -3,7 +3,8 @@
 
 ``` sql
 CREATE TABLE tbl_Users (
-    Email_address VARCHAR(255) PRIMARY KEY,
+    UserID VARCHAR(255) PRIMARY KEY,
+    Email_address VARCHAR(255),
     First_name VARCHAR(255),
     Last_name VARCHAR(255),
     Password VARCHAR(255),
@@ -41,6 +42,7 @@ CREATE TABLE Categories (
 CREATE TABLE Crime (
     CrimeID VARCHAR(255) PRIMARY KEY,
     CrimeDate VARCHAR(255),
+    CrimeCategory VARCHAR(255),
     Comment VARCHAR(255),
     Email_address VARCHAR(255),
     FOREIGN KEY (Email_address) REFERENCES tbl_Users (Email_address)
