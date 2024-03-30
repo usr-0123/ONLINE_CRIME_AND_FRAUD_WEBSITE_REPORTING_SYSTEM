@@ -4,7 +4,7 @@ import React from 'react';
 const Status = () => {
   return (
     <div>
-        Categories
+        Crime categories
     </div>
   );
 };

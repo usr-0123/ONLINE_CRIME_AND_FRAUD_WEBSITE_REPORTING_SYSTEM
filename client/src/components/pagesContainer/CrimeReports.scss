@@ -1,0 +1,19 @@
+.crimeReports {
+    padding: 10px;
+    border-radius: 10px;
+
+    .crimeAllReportsUList {
+        list-style: none;
+        padding: 10px 0 10px 0;
+
+        .crimeAllReportsList {
+            padding: 10px 0 10px 0;
+            overflow: auto;
+
+            .crimeAllReportEntry {
+                background-color: #fff;
+                padding: 10px;
+            }
+        }
+    }
+}

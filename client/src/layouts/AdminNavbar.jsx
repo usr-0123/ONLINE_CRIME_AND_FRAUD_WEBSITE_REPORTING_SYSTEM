@@ -8,19 +8,19 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   const items = [
     {
-      name: "Homes",
+      name: "Home",
       icon: "",
       path: "/admin/adminDashboard"
     },
-    // {
-    // //   name: "How it works",
-    //   icon: "",
-    //   path: "/admin/howItWorks"
-    // },
     {
-      name: "Status",
+      name: "Crime Status",
       icon: "",
       path: "/admin/status"
+    },
+    {
+      name: "Categories",
+      icon: "",
+      path: "/admin/categories"
     },
     {
       name: "About Us",
@@ -38,12 +38,12 @@ const Navbar = () => {
   return (
     <div className='navbarContainer'>
       <div className='navbarContainerHeader'>
-        <h1>Online Reporting</h1>
+        <h1>Online Reporting System</h1>
       </div>
       <div className='navbarContainerMenu'>
         {items.map((item) => (
           <div key={item.path} className="menu-item" onClick={() => handleItemClick(item.path)}>
-            <NavLink style={{ textDecoration: "none" }} to={item.path}>
+            <NavLink style={{ textDecoration: "none", color:"#fff", fontWeight:"1000" }} to={item.path}>
              <p>{item.name}</p>
            </NavLink>
          </div>

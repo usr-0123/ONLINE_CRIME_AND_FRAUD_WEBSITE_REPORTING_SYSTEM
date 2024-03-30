@@ -9,15 +9,19 @@ import React from 'react';
 const HowItWorks = () => {
   return (
     <div className='HowItWorks'>
-        <p>Reporting a crime or fraud on ORS is quick and easy. Follow these simple steps to submit a report and take action against online criminals:</p>
+        <p className='HowItWorksHeader'>Reporting a crime or fraud on ORS is quick and easy. Follow these simple steps to submit a report and take action against online criminals:</p>
         <ul className='HowItWorksSteps'>
           <li className='even'>
             <span>Step 1</span>
-            <p>Access Our Reporting Platform Visit ORS website and navigate to any of the  "Report Crime/Fraud" button. If you haven't already, you may need to register an account or log in to access the reporting form.</p>
+            <p>Access Our Reporting Platform Visit ORS website and navigate to any of the  "Report Crime/Fraud" button.
+              If you haven't already, you may need to register an account or log in to access the reporting form.</p>
           </li>   
           <li className='odd'>
             <span>Step 2</span>
-            <p>Provide Details Fill out the reporting form with as much detail as possible. Include information such as the type of crime or fraud, the date and time of occurrence, any individuals or organizations involved, and any evidence you may have, such as screenshots or documents.</p>
+            <p>Provide Details Fill out the reporting form with as much detail as possible.
+              Include information such as the type of crime or fraud,
+              the date and time of occurrence, any individuals or organizations involved,
+              and any evidence you may have, such as screenshots or documents.</p>
           </li>
           <li className= 'even'>
             <span>Step 3</span>

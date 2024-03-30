@@ -1,0 +1,16 @@
+.AdminDashboard {
+    display: flex;
+    flex-direction: column;
+
+    .AdminDashboardReportsHeader {
+        font-weight: 1000;
+        font-size: 20px;
+    }
+
+    // #103777,
+    // #0b2651
+
+    .AdminDashboardReports {
+        background-color: #0b2651;
+    }
+}

@@ -2,17 +2,26 @@
 import './PageContainer.scss'
 
 // Import components
+import CrimeForm from '../../components/pagesContainer/CrimeForm';
+import CrimeReports from '../../components/pagesContainer/CrimeReports';
 
 // Import react
 import React from 'react';
 
-const PageContainer = () => {
+const MainPage = () => {
   return (
-    <div>
-        <p>Report crime</p>
-        <button>Report new crime</button>
+    <div className='MainPage'>
+      <div className='MainPageNew'>
+        <CrimeForm />
+      </div>
+      <div className='MainPageHistory'>
+        <span className='MainPageNewHeader'>Your Reported cases</span>
+        <div className='historyReports'>
+          <CrimeReports />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default PageContainer;
+export default MainPage;

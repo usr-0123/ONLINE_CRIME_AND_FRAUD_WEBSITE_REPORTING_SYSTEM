@@ -1,7 +1,10 @@
 // Import stylefile
 import './ContactUs.scss'
 
-// Import components
+// Import icons
+import { CiLocationOn } from "react-icons/ci";
+import { MdEmail } from "react-icons/md";
+import { IoCall } from "react-icons/io5";
 
 // Import react
 import React from 'react';
@@ -11,7 +14,30 @@ const ContactUs = () => {
     <div className='contactUsContainer'>
       <span className='contactUsHeader'>Any Inquiry? Reach us out now!</span>
       <div className='contactUsContainer2'>
-        <div className='contactUsDiv'></div>
+        <div className='contactUsDiv'>
+          <span className='contactUsDivHeader'>Contact Information</span>
+          <div className='contactUsDivCall'>
+            <span>Telephone:</span>
+            <span>
+              <IoCall /> 01892020
+            </span>
+            <span>
+              <IoCall /> 03425737 
+            </span>
+          </div>
+          <div className='contactUsDivMail'>
+            <span>Send an Email to:</span>
+            <span>
+              <MdEmail /> info@ors.org
+            </span>
+          </div>
+          <div className='contactUsDivLocation'>
+            <span>We are located:</span>
+            <span>
+              <CiLocationOn /> Nairobi, Kenya
+            </span>
+          </div>
+        </div>
         <form action="" className='contactUsForm'>
           <div className='contactUsFormDiv'>
             <label htmlFor="fullNames">Full Name:</label>

@@ -1,17 +1,81 @@
 .contactUsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
 
     .contactUsHeader {
         font-weight: 700;
         font-size: 20px;
+        padding: 20px;
     }
 
     .contactUsContainer2 {
         display: flex;
         padding: 10px;
         gap: 20px;
+        border-radius: 13px;
+        background-color: #0b2651;
+
+        // #103777,
+        // #0b2651
 
         .contactUsDiv {
             width: 50%;
+            border-radius: 10px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            .contactUsDivHeader {
+                font-weight: 1000;
+                font-size: 30px;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+
+            .contactUsDivCall {
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+                gap: 10px;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+            .contactUsDivMail {
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+                gap: 10px;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+            .contactUsDivLocation {
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+                gap: 10px;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
         }
 
         .contactUsForm {
