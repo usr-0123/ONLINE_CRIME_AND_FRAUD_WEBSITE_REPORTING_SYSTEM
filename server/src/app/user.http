@@ -1,5 +1,35 @@
 ###
-POST http://localhost/8000/api/users/register
+POST http://localhost:8000/api/users/register
+Content-Type: application/json
+
+{
+    "Email_address":"kemboilewis@gmail.com",
+    "First_name":"Lewis",
+    "Last_name":"Kemboi",
+    "Password":"@Usr0123"
+}
 
 ###
-Get http://localhost/8000/api/users/profile/
+POST http://localhost:8000/api//users/auth/login
+Content-Type: application/json
+
+{
+    "Email_address":"kemboilewis6@gmail.com",
+    "Password":"@Usr01234"
+}
+
+###
+PUT http://localhost:8000/api/users/update/92baddc7-416d-49a9-9fef-76f7fb488f77
+Content-Type: application/json
+
+{
+    "Email_address":"kemboilewis6@gmail.com",
+    "First_name":"LewisKi",
+    "Last_name":"Kemboi"
+}
+
+###
+Get http://localhost:8000/api/users/92baddc7-416d-49a9-9fef-76f7fb488f77
+
+###
+DELETE http://localhost:8000/api/users/delete/92baddc7-416d-49a9-9fef-76f7fb488f77

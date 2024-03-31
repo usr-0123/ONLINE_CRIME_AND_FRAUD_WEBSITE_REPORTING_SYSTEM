@@ -1,6 +1,5 @@
 import { Router } from 'express';
 
-const userRouter = Router();
 import {
     registerUser,
     loginUser,
@@ -9,10 +8,12 @@ import {
     updateUser
 } from '../controllers/userController.js';
 
+const userRouter = Router();
+
 userRouter.post('/users/register', registerUser);
 userRouter.post('/users/auth/login', loginUser);
-userRouter.get('/users/profile/:id', getUserById);
-userRouter.delete('/users/profile/:id', deleteUser);
-userRouter.put('/users/profile/:id', updateUser);
+userRouter.get('/users/:UserID', getUserById);
+userRouter.delete('/users/delete/:UserID', deleteUser);
+userRouter.put('/users/update/:UserID', updateUser);
 
 export default userRouter;

@@ -1,4 +1,4 @@
-import { poolRequest, closePool, sql } from '../urilis/dbConnect.js';
+import { poolRequest, sql } from '../urilis/dbConnect.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -12,7 +12,7 @@ export const addUserServices = async (newUser) => {
             .input('Last_name', sql.VarChar, newUser.Last_name)
             .input('Password', sql.VarChar, newUser.Password)
 
-            .query("INSERT INTO tbl_Users ( UserID, Email_address, First_name, Last_name, Password, User_rank) VALUES( @Email_address, @First_name, @Last_name, @Password )");
+            .query("INSERT INTO tbl_Users ( UserID, Email_address, First_name, Last_name, Password ) VALUES( @UserID, @Email_address, @First_name, @Last_name, @Password )");
 
         return result;
     } catch (error) {
@@ -59,8 +59,10 @@ export const updateUserService = async (UserID, updatedUserData) => {
             .input( 'First_name', sql.VarChar, updatedUserData.First_name )
             .input( 'Last_name', sql.VarChar, updatedUserData.Last_name )
             .input( 'Email_address', sql.VarChar, updatedUserData.Email_address )
-            .query( "UPDATE tbl_Users SET First_name = @First_name, Last_name = @Last_name, Email_address = @Email_address WHERE UserID = @UserID" );
-        return result;
+            .input( 'Password', sql.VarChar, updatedUserData.Password)
+            .query( "UPDATE tbl_Users SET First_name = @First_name, Last_name = @Last_name, Email_address = @Email_address, Password = @Password WHERE UserID = @UserID" );
+        // console.log("Querry results", updatedUserData.Password);
+            return result;
     } catch (error) {
         return error;
     }

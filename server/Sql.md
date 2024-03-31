@@ -8,8 +8,9 @@ CREATE TABLE tbl_Users (
     First_name VARCHAR(255),
     Last_name VARCHAR(255),
     Password VARCHAR(255),
-    User_rank VARCHAR(255)
-)
+    User_rank VARCHAR(255) DEFAULT 'User'
+);
+
 ```
 
 ## Users onboarding
@@ -39,12 +40,17 @@ CREATE TABLE Categories (
 - Response email with ref number
 
 ``` sql
+
 CREATE TABLE Crime (
     CrimeID VARCHAR(255) PRIMARY KEY,
     CrimeDate VARCHAR(255),
     CrimeCategory VARCHAR(255),
+	Involved_parties VARCHAR(999),
     Comment VARCHAR(255),
-    Email_address VARCHAR(255),
-    FOREIGN KEY (Email_address) REFERENCES tbl_Users (Email_address)
+    Anonimity VARCHAR(255),
+    UserID VARCHAR(255),
+    -- Image
+    FOREIGN KEY (UserID) REFERENCES tbl_Users (UserID)
 )
+
 ```

@@ -1,5 +1,6 @@
 import sql from "mssql";
 import dotenv from "dotenv";
+import logger from "./logger.js";
 
 dotenv.config();
 
@@ -10,7 +11,6 @@ const {
   SQL_DB,
   SQL_SERVER_PORT,
   SQL_ENCRYPT,
-  SQL_ENABLE_ARITH_ABORT,
   SQL_TRUST_SERVER_CERTIFICATE,
 } = process.env;
 
@@ -33,12 +33,13 @@ try {
   appPool = await sql.connect(sqlConfig);
   poolRequest = () => appPool.request();
   if (appPool) {
-    console.log("Connected to SQL server");
+    logger.info("DB connected successfully")
+    // console.log("Connected to SQL server");
   }
 } catch (error) {
   console.error("Failed to connect to SQL server:", error);
 }
 
-const closePool = async () => sql.close();
+// const closePool = async () => sql.close();
 
-export { poolRequest, closePool, sql };
+export { poolRequest, sql };

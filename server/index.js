@@ -7,7 +7,8 @@ import cors from 'cors';
 import userRouter from './src/routes/userRoutes.js';
 
 dotenv.config();
-const port = process.env.API_PORT || 3000;
+
+const PORT = process.env.API_PORT || 3500;
 const app = express();
 var corsOptions = {
     origin: 'http://localhost:5173',
@@ -19,9 +20,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
-app.use('/api', userRouter)
+app.use('/api', userRouter);
 
 //routes
-app.listen(port, () => {
-    logger.info(`server running on http://localhost:${port} `);
+app.listen(PORT, () => {
+    logger.info(`server running on http://localhost:${PORT} `);
 })
