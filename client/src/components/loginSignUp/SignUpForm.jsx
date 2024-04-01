@@ -42,6 +42,7 @@ const SignUpForm = () => {
 
       // Check if registration was successful
       if (response.data) {
+        // Add a toaster for successful registration
         // Redirect to main page after registration
         navigate('/mainPage');
       } else {

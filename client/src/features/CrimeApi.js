@@ -28,7 +28,7 @@ export const crimeApi = createApi({
             query: (crime) => ({
                 url: 'crime/add',
                 method: 'POST',
-                body: post
+                body: crime
             }),
             invalidatesTags: ['Crimes']
         }),
