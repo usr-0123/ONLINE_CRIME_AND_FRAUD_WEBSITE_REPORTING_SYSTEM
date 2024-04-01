@@ -11,7 +11,7 @@ const AdminDashboard = () => {
     <div className='AdminDashboard'>
       <p className='AdminDashboardReportsHeader'>This is a simple React component.</p>
       <div className='AdminDashboardReports'>
-        <CrimeReports />
+        {/* <CrimeReports /> */}
       </div>
     </div>
   );

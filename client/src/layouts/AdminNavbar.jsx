@@ -9,6 +9,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+  
+  const handleLogout = () => {
+
+    // Clear user data from local storage
+    localStorage.removeItem('userData');
+  }
+
   const items = [
     {
       name: "Home",
@@ -36,7 +43,7 @@ const Navbar = () => {
       path: "/admin/profile"
     },
     {
-      name: <TbLogout style={{width:"30px", height:"30px"}}/>,
+      name: <TbLogout onClick={handleLogout} style={{width:"30px", height:"30px"}}/>,
       icon:"",
       path: "/"
     },
