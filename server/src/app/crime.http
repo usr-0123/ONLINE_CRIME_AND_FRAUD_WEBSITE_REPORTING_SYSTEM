@@ -1,0 +1,35 @@
+###
+POST http://localhost:8000/api/crime/add
+Content-Type:  application/json
+
+{
+    "UserID":"0fc83649-6068-477b-a33c-78fb4b06d918",
+    "CrimeDate":"09-10-2024",
+    "CrimeCategory":"Cyberbullying",
+    "Involved_parties":"Kabarak",
+    "Comment":"Involved in creating fake news",
+    "Anonimity":"True"
+}
+
+
+###
+GET http://localhost:8000/api/crimes
+
+###
+GET http://localhost:8000/api/crime/38de66e7-da73-446b-8cd3-537d7e62edb5
+
+###
+PUT http://localhost:8000/api/crime/update/38de66e7-da73-446b-8cd3-537d7e62edb5
+Content-Type: application/json
+
+{
+    "UserID":"f26e38e2-c669-45c6-92a5-a32acd96b397",
+    "CrimeDate":"09-10-2024",
+    "CrimeCategory":"Cyberbullying",
+    "Involved_parties":"Kabarak",
+    "Comment":"Involved in creating fake news",
+    "Anonimity":"False"
+}
+
+###
+DELETE http://localhost:8000/api/crime/delete/94525563-024a-45f5-8e2f-121b54cae2aa

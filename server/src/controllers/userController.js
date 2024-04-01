@@ -50,6 +50,7 @@ export const registerUser = async (req, res) => {
             if (response.message) {
                 sendServerError(res, response.message);
             } else {
+                await sendMail( Email_address, First_name, Last_name )
                 sendCreated(res, 'User created successfully');
             }
         } catch (error) {
@@ -57,6 +58,47 @@ export const registerUser = async (req, res) => {
         }
     }
 }
+
+// Email upon registration
+export const sendMail = async (Email_address, First_name, Last_name ) => {
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.Email,
+        pass: process.env.Password,
+      },
+    });
+     
+    // Generate HTML string for the email content
+    const emailTemp = `
+    <!DOCTYPE html>
+    <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+    <head>
+        <title>THANK YOU FOR REGISTERING TO ONLINE REPORTING SYSTEM!</title>
+    </head>
+    <body>
+        <p>Dear ${First_name} ${Last_name},</p>
+        <p>We're excited to have you as a member!</p>
+        <p>Report any of the online issues that you encounter, to us anytime and get a confirmation email for your report with a reference number to track the progress</p>
+    </body>
+    </html>
+  `;
+     
+    const mailOptions = {
+      from: process.env.Email_address,
+      to: Email_address,
+      subject: "Thank you for registering to the Online Reporting System",
+      html: emailTemp,
+    };
+     
+    try {
+      logger.info("Sending mail....");
+      await transporter.sendMail(mailOptions);
+      logger.info("Email sent successfully!");
+    } catch (error) {
+      logger.error(error);
+    }
+    };
 
 export const loginUser = async (req, res) => {
     try {

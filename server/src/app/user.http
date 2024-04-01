@@ -3,7 +3,7 @@ POST http://localhost:8000/api/users/register
 Content-Type: application/json
 
 {
-    "Email_address":"kemboilewis@gmail.com",
+    "Email_address":"kemboilewis6@gmail.com",
     "First_name":"Lewis",
     "Last_name":"Kemboi",
     "Password":"@Usr0123"
@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 
 ###
-Get http://localhost:8000/api/users/92baddc7-416d-49a9-9fef-76f7fb488f77
+Get http://localhost:8000/api/users/f26e38e2-c669-45c6-92a5-a32acd96b397
 
 ###
 DELETE http://localhost:8000/api/users/delete/92baddc7-416d-49a9-9fef-76f7fb488f77

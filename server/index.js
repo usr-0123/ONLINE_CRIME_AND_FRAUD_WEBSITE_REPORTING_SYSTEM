@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import userRouter from './src/routes/userRoutes.js';
+import crimeRouter from './src/routes/crimeRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
 app.use('/api', userRouter);
+app.use('/api', crimeRouter);
 
 //routes
 app.listen(PORT, () => {
