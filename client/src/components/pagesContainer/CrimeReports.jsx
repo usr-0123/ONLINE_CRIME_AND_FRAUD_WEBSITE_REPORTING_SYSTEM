@@ -2,37 +2,9 @@ import React from 'react';
 
 import './CrimeReports.scss'
 
-const CrimeReports = () => {
+import { useGetCrimeByIDQuery } from '../../features/CrimeApi';
 
-    const crimeEntries = [
-        {
-            referenceNumber:"824623ewgy",
-            crimeType: "Cybercrime",
-            date: "01-01-2023",
-            time: "09:32 AM",
-            involvedIndividuals: "Khalif Kairo",
-            involvedOrganizations: "Kai & Karo company",
-            evidence: "The car company"
-        },
-        {
-            referenceNumber:"gdfghfd",
-            crimeType: "CyberBullying",
-            date: "01-01-2023",
-            time: "09:32 AM",
-            involvedIndividuals: "Kabarak University Management",
-            involvedOrganizations: "Kabarak University",
-            evidence: "Campus"
-        },
-        {
-            referenceNumber:"cgdfgdfgf",
-            crimeType: "Online Fraud",
-            date: "23-06-2022",
-            time: "02:32 PM",
-            involvedIndividuals: "Nakuru County",
-            involvedOrganizations: "Gov't Office",
-            evidence: "County"
-        }
-    ]
+const CrimeReports = () => {
 
   return (
     <div className="crimeReports">
@@ -57,28 +29,28 @@ const CrimeReports = () => {
                     <span>Evidence: </span>
                 </div>
             </li>
-          {crimeEntries.map((entry, index) => (
+          {/* {crimeEntries.map((entry, index) => ( */}
             <li key={index} className='crimeAllReportsList'>
                 <div className='AllReportEntry'>
-                    <span>{entry.referenceNumber}</span>
+                    <span>entry.referenceNumber</span>
                 </div>
                 <div className='AllReportEntry'>
-                    <span>{entry.crimeType}</span>
+                    <span>entry.crimeType</span>
                 </div>
                 <div className='AllReportEntry'>
-                    <span>{entry.date} {entry.time}</span>
+                    <span>entry.date</span>
                 </div>
                 <div className='AllReportEntry'>
-                    <span>{entry.involvedIndividuals}</span>
+                    <span>entry.involvedIndividuals</span>
                 </div>
                 <div className='AllReportEntry'>
-                    <span>{entry.involvedOrganizations}</span>
+                    <span>entry.involvedOrganizations</span>
                 </div>
                 <div className='AllReportEntry'>
-                    <span>{entry.evidence}</span>
+                    <span>entry.evidence</span>
                 </div>
             </li>
-          ))}
+          {/* ))} */}
         </ul>
     </div>
   );

@@ -16,7 +16,8 @@ import {
     getCrimeByIDService,
     deleteCrimeService,
     addCrimeService,
-    updateCrimeService
+    updateCrimeService,
+    getCrimeByUIDService
 } from '../services/crimeService.js'
 
 import { crimeValidator } from '../validators/crimeValidators.js'
@@ -43,6 +44,20 @@ export const getCrimeByID = async (req, res) => {
     try {
         const CrimeID = req.params.CrimeID;
         const Crime = await getCrimeByIDService(CrimeID)
+        if (crimeValidator.length === 0) {
+            sendNotFound(res, 'Crime not found');
+        } else {
+            res.status(200).json(Crime);
+        }
+    } catch (error) {
+        sendServerError(res, error.message)
+    }
+}
+
+export const getCrimeByUID = async (req, res) => {
+    try {
+        const UserID = req.params.UserID;
+        const Crime = await getCrimeByUIDService(UserID)
         if (crimeValidator.length === 0) {
             sendNotFound(res, 'Crime not found');
         } else {

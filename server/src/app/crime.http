@@ -16,6 +16,9 @@ Content-Type:  application/json
 GET http://localhost:8000/api/crimes
 
 ###
+GET http://localhost:8000/api/crime/fetchByUID/f26e38e2-c669-45c6-92a5-a32acd96b397
+
+###
 GET http://localhost:8000/api/crime/38de66e7-da73-446b-8cd3-537d7e62edb5
 
 ###

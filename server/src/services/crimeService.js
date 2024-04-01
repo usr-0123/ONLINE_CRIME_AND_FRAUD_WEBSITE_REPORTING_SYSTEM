@@ -21,6 +21,17 @@ export const getCrimeByIDService = async (CrimeID) => {
     }
 }
 
+export const getCrimeByUIDService = async (UserID) => {
+    try {
+        const result = await poolRequest()
+        .input('UserID', sql.VarChar, UserID)
+        .query("SELECT * FROM Crime WHERE UserID = @UserID")
+        return result.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 export const deleteCrimeService = async (CrimeID) => {
     try {
         const result = await poolRequest()
