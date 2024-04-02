@@ -104,4 +104,6 @@ export const sendMail = async (CrimeID) => {
   
   Add a component to fetch the crime entry, display its progress
 
-  Now add progress column in the crime entry
+  add time in the crime table
+
+  Now add progress column in the crime entry //done and functional
