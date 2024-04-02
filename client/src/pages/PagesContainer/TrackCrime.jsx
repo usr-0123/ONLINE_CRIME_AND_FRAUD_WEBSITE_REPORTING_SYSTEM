@@ -14,6 +14,7 @@ const TrackCrime = () => {
     if (response) {
       setCrimeData(response);
       setIsLoading(false);
+      setIsError(false); // Reset error state when data is available
     } else if (error) {
       setIsError(true);
       setIsLoading(false);
@@ -23,6 +24,8 @@ const TrackCrime = () => {
   const handleInputChange = (e) => {
     setCrimeID(e.target.value);
   };
+
+  console.log("Logged entry data:", crimeData);
 
   return (
     <div className="track-crime">
@@ -34,32 +37,36 @@ const TrackCrime = () => {
         className='track-crime-input'
       />
       
-      {queryLoading && <p>Loading...</p>}
-      {isError && <p>We cannot find crime by the tracking number given, please check the crime number and try again</p>}
-      {crimeData && (
-        <div className='track-crime-data'>
-          <span>
-            <h2>Crime Details</h2>
-          </span>
-          <span>
-            <p>Anonimity status: {crimeData[0].Anonimity}</p>
-          </span>
-          <span>
-            <p>Report Progress: {crimeData[0].CrimeStatus}</p>
-          </span>
-          <span>
-            <p>Crime Date: {crimeData[0].CrimeDate}</p>
-          </span>
-          <span>
-            <p>Category: {crimeData[0].CrimeCategory}</p>
-          </span>
-          <span>
-            <p>Involved parties: {crimeData[0].Involved_parties}</p>
-          </span>
-          <span>
-            <p>Comments: {crimeData[0].Comment}</p>
-          </span>
-        </div>
+      {queryLoading ? (
+        <p>Loading...</p>
+      ) : isError && !crimeData ? (
+        <p>We cannot find crime by the tracking number given, please check the crime number and try again</p>
+      ) : (
+        crimeData && (
+          <div className='track-crime-data'>
+            <span>
+              <h2>Crime Details</h2>
+            </span>
+            <span>
+              <p>Anonymity status: {crimeData[0].Anonymity}</p>
+            </span>
+            <span>
+              <p>Report Progress: {crimeData[0].CrimeStatus}</p>
+            </span>
+            <span>
+              <p>Crime Date: {crimeData[0].CrimeDate}</p>
+            </span>
+            <span>
+              <p>Category: {crimeData[0].CrimeCategory}</p>
+            </span>
+            <span>
+              <p>Involved parties: {crimeData[0].Involved_parties}</p>
+            </span>
+            <span>
+              <p>Comments: {crimeData[0].Comment}</p>
+            </span>
+          </div>
+        )
       )}
     </div>
   );

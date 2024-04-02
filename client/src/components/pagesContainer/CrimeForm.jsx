@@ -88,9 +88,9 @@ const CrimeForm = () => {
           <input type="text" placeholder='Enter involved individuals or organisations...' value={involvedParties} onChange={(e) => setInvolvedParties(e.target.value)} />
           <input type="text" placeholder='Enter crime description...' value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
-        <div className='MainPageNewFormEvidence'>
-          <input type="file" />
-        </div>
+        {/* <div className='MainPageNewFormEvidence'> */}
+          {/* <input type="file" /> */}
+        {/* </div> */}
         <button type="submit" disabled={isLoading}>Submit Report</button>
         {isError && <div>Unable to submit crime report</div>}
       </form>

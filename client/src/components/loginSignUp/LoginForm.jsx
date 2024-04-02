@@ -40,6 +40,8 @@ const LoginForm = () => {
 
         const user = response.data.user;
 
+        // console.log("Logged the user details at the login form:", user);
+
         const User_rank = (response.data.user.User_rank)
 
         // Store user details in local storage
@@ -63,7 +65,6 @@ const LoginForm = () => {
     }
   };
   
-
   return (
     <form className='lsForm' onSubmit={handleSubmit}>
       <div className='lsFormDiv'>

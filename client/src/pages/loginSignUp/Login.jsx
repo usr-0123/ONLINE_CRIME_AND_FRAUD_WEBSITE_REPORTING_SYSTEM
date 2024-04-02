@@ -9,6 +9,7 @@ import LoginForm from '../../components/loginSignUp/LoginForm';
 import './LoginSignUp.scss'
 
 const Login = () => {
+  
   const navigate = useNavigate()
 
   return (

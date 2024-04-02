@@ -27,24 +27,35 @@ const SignUpForm = () => {
     setPassword(event.target.value);
   };
 
+  const storeUserDetailsInLocalStorage = (userData) => {
+    localStorage.setItem('userData', JSON.stringify(userData));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Check if any of the input fields are empty
     if (!firstName || !lastName || !email || !password) {
-        console.error('Please fill out all fields');
-        return; // Prevent form submission
-      }
-      
+      console.error('Please fill out all fields');
+      return; // Prevent form submission
+    }
+
     try {
       // Call the register user mutation
-      const response = await registerUser({ First_name:firstName, Last_name:lastName, Email_address:email, Password:password });
+      const response = await registerUser({ First_name: firstName, Last_name: lastName, Email_address: email, Password: password });
 
       // Check if registration was successful
       if (response.data) {
-        // Add a toaster for successful registration
+        console.log("Logged the response.data:", response.data);
+
+        const user = response.data.user;
+        console.log("Logged the user details at the signup form:", user);
+        // Store user details in local storage
+        storeUserDetailsInLocalStorage(user);
+
         // Redirect to main page after registration
-        navigate('/mainPage');
+        navigate('/');
+
       } else {
         // Handle registration failure
         console.error('Registration failed');
