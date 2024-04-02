@@ -46,6 +46,25 @@
                 justify-content: space-around;
                 align-items: center;
                 padding: 10px;
+
+                button, select {
+                    padding: 10px;
+                    width: 100px;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    border: 1px solid #0d2d5e;
+                    font-weight: 1000;
+                }
+
+                .actionsTabInput {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+
+                    select {
+                        width: 150px;
+                    }
+                }
             }
         }
     }

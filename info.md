@@ -106,4 +106,8 @@ export const sendMail = async (CrimeID) => {
 
   add time in the crime table
 
+  add a function to display the person who posted
+
+  Add a reply option from the admin
+
   Now add progress column in the crime entry //done and functional

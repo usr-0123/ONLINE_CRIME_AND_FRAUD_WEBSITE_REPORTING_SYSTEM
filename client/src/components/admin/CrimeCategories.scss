@@ -24,7 +24,6 @@
                 flex-direction: row;
                 gap: 10px;
                 width: 100%;
-                // background-color: #fff;
 
                 .crimeCategoriesEntryHeader {
                     font-weight: 1000;
@@ -33,7 +32,6 @@
                 .crimeCategoriesEntries {
                     width: 100%;
                     list-style: none;
-                    // background-color: #fff;
 
                     .crimeCategoriesEntriesHeader {
                         display: flex;
@@ -52,7 +50,8 @@
                         .crimeCategoriesEntriesListEntries {
                             display: flex;
                             width: 100%;
-                            border: 1px solid #fff;
+                            background-color: #fff;
+                            color: #000;
                             justify-content: space-between;
 
                             span {

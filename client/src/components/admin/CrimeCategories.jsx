@@ -34,7 +34,7 @@ const CrimeCategories = () => {
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching crime entries.</div>;
 
-    console.log("Logged crime entries:", crimeEntries);
+    // console.log("Logged crime entries:", crimeEntries);
 
     const crimes = [
       "Testing update",
@@ -65,13 +65,16 @@ const CrimeCategories = () => {
                         </div>
                         <div className='crimeCategoriesEntry'>
                             <ul className='crimeCategoriesEntries'>
-                                <div className='crimeCategoriesEntriesHeader'>
-                                    <span>Ref Number</span>
-                                    <span>Date</span>
-                                    <span>Involved Individuals</span>
-                                    <span>Involved Parties</span>
-                                    <span>Progress</span>
-                                </div>
+                                <li className='crimeCategoriesEntriesList'>
+                                    <div className='crimeCategoriesEntriesHeader'>
+                                        <span>Ref Number</span>
+                                        <span>Date</span>
+                                        <span>Involved Parties</span>
+                                        <span>Involved Parties</span>
+                                        <span>Progress</span>
+                                    </div>
+                                </li>
+
                                 {crimeEntries && crimeEntries
                                     .filter(entry => entry.CrimeCategory === category)
                                     .map((entry, entryIndex) => (
@@ -79,7 +82,6 @@ const CrimeCategories = () => {
                                             <div className='crimeCategoriesEntriesListEntries'>
                                                 <span>{entry.CrimeID}</span>
                                                 <span>{entry.CrimeDate}</span>
-                                                <span>{entry.involvedIndividuals}</span>
                                                 <span>{entry.Involved_parties}</span>
                                                 <span>{entry.CrimeCategory}</span>
                                                 <span>{entry.CrimeStatus}</span>

@@ -92,7 +92,7 @@ const CrimeReports = () => {
             <div className="actionsTab">
               <button onClick={() => handleDelete(entry.CrimeID)}>Delete</button>
               {/* Updating crime entry */}
-              <div>
+              <div className='actionsTabInput'>
                 <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
                   <option value="">Select Status</option>
                   <option value="Pending">Pending</option>
