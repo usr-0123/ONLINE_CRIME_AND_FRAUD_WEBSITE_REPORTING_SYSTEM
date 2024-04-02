@@ -10,41 +10,6 @@ const CrimeReports = () => {
 
     const { data:crimeEntries } = useGetCrimesQuery()
 
-    console.log("Logged data from mutation", crimeEntries);
-
-    // const crimeEntries = [
-    //     {
-    //         referenceNumber:"824623ewgy",
-    //         crimeType: "Cybercrime",
-    //         date: "01-01-2023",
-    //         time: "09:32 AM",
-    //         involvedIndividuals: "Khalif Kairo",
-    //         involvedOrganizations: "Kai & Karo company",
-    //         evidence: "The car company",
-    //         action: <FaChevronRight />
-    //     },
-    //     {
-    //         referenceNumber:"dfhgjyuk",
-    //         crimeType: "CyberBullying",
-    //         date: "01-01-2023",
-    //         time: "09:32 AM",
-    //         involvedIndividuals: "Kabarak University Management",
-    //         involvedOrganizations: "Kabarak University",
-    //         evidence: "Campus",
-    //         action: <FaChevronRight />
-    //     },
-    //     {
-    //         referenceNumber:"errgdfh",
-    //         crimeType: "Online Fraud",
-    //         date: "01-01-2023",
-    //         time: "09:32 AM",
-    //         involvedIndividuals: "General Manager",
-    //         involvedOrganizations: "Cocacola company",
-    //         evidence: "Company",
-    //         action: <FaChevronRight />
-    //     }
-    // ]
-
   return (
     <div className="crimeReports">
         <ul className='crimeAllReportsUList'>

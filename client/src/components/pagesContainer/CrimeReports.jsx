@@ -12,7 +12,7 @@ const CrimeReports = () => {
   const [crimeEntries, setCrimeEntries] = useState([]);
 
   // Fetch crime entries using the useGetCrimeByUidQuery hook
-  const { data: crimes, isError, isLoading, refetch } = useGetCrimeByUidQuery(UserID, { refetchOnReconnect: true });
+  const { data: crimes, isError, isLoading } = useGetCrimeByUidQuery(UserID, { refetchOnReconnect: true });
 
   // Update state variable with fetched data
   useEffect(() => {
