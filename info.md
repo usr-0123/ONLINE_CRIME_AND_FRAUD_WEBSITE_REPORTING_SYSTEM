@@ -81,3 +81,24 @@ export const sendMail = async (CrimeID) => {
     logger.error(error);
   }
   };
+
+    const crimes = [
+    "Phishing",
+    "Identity Theft",
+    "Credit Card Fraud",
+    "Online Scams",
+    "Malware Attacks",
+    "Cyberbullying",
+    "Cyberstalking",
+    "Data Breaches",
+    "Online Extortion",
+    "Online Child Exploitation",
+    "Hacking",
+    "Fraudulent Investment Schemes",
+    "Fake Websites and Phony Offers",
+    "Social Engineering",
+    "Online Auction Fraud"
+  ];
+
+  Check on the order of hooks
+  

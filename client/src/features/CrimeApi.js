@@ -16,9 +16,14 @@ export const crimeApi = createApi({
             providesTags: ['Crimes']
         }),
 
+        getCrimeByUid: builder.query({
+            query: (UserID) => `crime/fetchByUID/${UserID}`,
+            providesTags: ['Crimes']
+        }),
+
         deleteCrime: builder.mutation({
             query: (CrimeID) => ({
-                url: `crime/${CrimeID}`,
+                url: `crime/delete/${CrimeID}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Crimes']
@@ -47,6 +52,7 @@ export const crimeApi = createApi({
 export const {
     useGetCrimesQuery,
     useGetCrimeByIDQuery,
+    useGetCrimeByUidQuery,
     useDeleteCrimeMutation,
     useAddCrimeMutation,
     useUpdateCrimeMutation

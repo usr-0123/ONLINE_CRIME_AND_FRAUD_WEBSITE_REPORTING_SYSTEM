@@ -1,49 +1,71 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './CrimeCategories.scss'
 
-const CrimeCategories = () => {
+import { useGetCrimesQuery, useDeleteCrimeMutation } from '../../features/CrimeApi';
 
-    const crimeEntries = [
-        {
-            referenceNumber:"8244tfdewgy",
-            crimeType: "Cybercrime",
-            date: "01-01-2023",
-            time: "09:32 AM",
-            involvedIndividuals: "Khalif Kairo",
-            involvedOrganizations: "Kai & Karo company",
-            evidence: "The car company"
-        },
-        {
-            referenceNumber:"824623ewgy",
-            crimeType: "CyberBullying",
-            date: "01-01-2023",
-            time: "09:32 AM",
-            involvedIndividuals: "Kabarak University Management",
-            involvedOrganizations: "Kabarak University",
-            evidence: "Campus"
+const CrimeCategories = () => {
+    const { data: crimeEntries, isLoading, isError, refetch } = useGetCrimesQuery();
+    const [deleteCrime] = useDeleteCrimeMutation();
+
+    const crimeData = crimeEntries
+
+    console.log("Logged crime entries:", crimeData);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          await refetch();
+        } catch (error) {
+          console.error('Error fetching crime entries:', error);
         }
-    ]
-    const crimeCategories = [
-        {
-            name: "Cybercrime",
-            reports: "8244tfdewgy",
-            status: "Reported to police"
-        },
-        {
-            name: "CyberBullying",
-            reports: "824623ewgy",
-            status: "Completed and solved"
-        }
-    ]
+      };
+  
+      fetchData();
+  
+      // Cleanup function
+      return () => {
+        // Any cleanup logic if needed
+      };
+    }, [refetch]);
+  
+    const handleDeleteCrime = async (CrimeID) => {
+      try {
+        await deleteCrime(CrimeID);
+
+      } catch (error) {
+        console.error('Error deleting crime entry:', error);
+      }
+    };
+  
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error fetching crime entries.</div>;
+
+    const crimes = [
+        "Phishing",
+        "Identity Theft",
+        "Credit Card Fraud",
+        "Online Scams",
+        "Malware Attacks",
+        "Cyberbullying",
+        "Cyberstalking",
+        "Data Breaches",
+        "Online Extortion",
+        "Online Child Exploitation",
+        "Hacking",
+        "Fraudulent Investment Schemes",
+        "Fake Websites and Phony Offers",
+        "Social Engineering",
+        "Online Auction Fraud"
+    ];
 
   return (
     <div className="crimeCategories">
         <ul className='crimeCategoriesUList'>
-          {crimeCategories.map((entry, index) => (
+          {crimes.map((entry, index) => (
             <li key={index} className='crimeCategoriesList'>
                 <div className='crimeCategoriesEntry'>
-                    <span className='crimeCategoriesEntryHeader'>{entry.name}</span>
+                    <span className='crimeCategoriesEntryHeader'>{entry}</span>
                 </div>
                 <div className='crimeCategoriesEntry'>
                     <ul className='crimeCategoriesEntries'>
@@ -56,8 +78,8 @@ const CrimeCategories = () => {
                                     <span>Evidence</span>
                         </div>
 
-                        {crimeEntries.map((entry, index) => (
-                            <li key={index} className='crimeCategoriesEntriesList'>                                
+                        {crimeEntries && crimeEntries.map((entry, index) => (
+                            <li key={index.id} className='crimeCategoriesEntriesList'>                                
                                 <div className='crimeCategoriesEntriesListEntries'>
                                     <span>{entry.referenceNumber}</span>
                                     <span>{entry.date}</span>
@@ -65,6 +87,7 @@ const CrimeCategories = () => {
                                     <span>{entry.involvedIndividuals}</span>
                                     <span>{entry.involvedOrganizations}</span>
                                     <span>{entry.evidence}</span>
+                                    <span> <button onClick={() => handleDeleteCrime(entry.UserID)}>Delete</button> </span>
                                 </div>
                             </li>
                         ))}

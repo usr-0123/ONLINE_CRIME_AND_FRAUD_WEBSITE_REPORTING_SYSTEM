@@ -23,6 +23,22 @@
 
             .AllReportEntry {
                 width: 16.67%;
+                color: #fff;
+                font-weight: 1000;
+            }
+
+            .AllReportEntries {
+                width: 100%;
+                padding: 10px;
+                background-color: #fff;
+                display: flex;
+
+                .deleteButton {
+                    border: 1px solid #fff;
+                    background-color: #fff;
+                    font-size: 20px;
+                    border-radius: 50%;
+                }
             }
         }
     }
