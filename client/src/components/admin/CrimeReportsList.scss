@@ -5,28 +5,44 @@
     .crimeAllReportsUList {
         list-style: none;
         padding: 10px 0 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-        .crimeAllReportsList {
-            padding: 10px 0 10px 0;
+        .crimeAllReportsUListContainer {
+            width: 100%;
             display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #fff;
+            border-left: 1px solid #fff;
+            border-radius: 0 0 0 20px;
 
-            .crimeAllReportEntry {
-                background-color: #fff;
-                padding: 10px;
-                width: 12.5%;
+            .crimeAllReportsList {
+                padding: 10px 0 10px 0;
                 display: flex;
-                flex-direction: column;
-                gap: 10px;
 
-                .crimeAllReportEntryHeader {
-                    font-weight: 700;
-                }
+                .crimeAllReportEntry {
+                    background-color: #fff;
+                    padding: 10px;
+                    width: 20%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
 
-                .crimeAllReportEntryBtn {
-                    align-self: center;
-                    justify-self: flex-end;
-                    width: 100%;
+                   .crimeAllReportEntryHeader {
+                     font-weight: 700;
+                    }
+
+                 .crimeAllReportEntryBtn {
+                     align-self: center;
+                     justify-self: flex-end;
+                     width: 100%;
+                    }
                 }
+            }
+
+            .actionsTab {
+                padding: 10px;
             }
         }
     }

@@ -9,9 +9,9 @@ import CrimeReports from '../../components/admin/CrimeReportsList'
 const AdminDashboard = () => {
   return (
     <div className='AdminDashboard'>
-      <p className='AdminDashboardReportsHeader'>This is a simple React component.</p>
+      <p className='AdminDashboardReportsHeader'>The following are crime reports submitted:</p>
       <div className='AdminDashboardReports'>
-        {/* <CrimeReports /> */}
+        <CrimeReports />
       </div>
     </div>
   );

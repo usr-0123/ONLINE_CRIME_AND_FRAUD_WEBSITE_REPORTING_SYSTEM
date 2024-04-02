@@ -101,4 +101,4 @@ export const sendMail = async (CrimeID) => {
   ];
 
   Check on the order of hooks
-  
+  Now add progress column in the crime entry
