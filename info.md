@@ -101,4 +101,5 @@ export const sendMail = async (CrimeID) => {
   ];
 
   Check on the order of hooks
+  Add a component to fetch the crime entry, display its progress
   Now add progress column in the crime entry

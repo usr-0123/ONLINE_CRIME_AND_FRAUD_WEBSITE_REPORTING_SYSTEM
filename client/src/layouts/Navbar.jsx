@@ -22,6 +22,10 @@ const Navbar = () => {
       path: "/mainPage"
     },
     {
+      name: "Track Crime",
+      path: "/trackCrime"
+    },
+    {
       name: "How it works",
       path: "/howItWorks"
     },

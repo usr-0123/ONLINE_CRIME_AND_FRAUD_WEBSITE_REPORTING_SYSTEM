@@ -8,6 +8,7 @@ import AboutUs from '../PagesContainer/AboutUs';
 import ContactUs from '../PagesContainer/ContactUs';
 import HowItWorks from '../PagesContainer/HowItWorks';
 import Profile from '../profile/Profile';
+import TrackCrime from '../PagesContainer/TrackCrime';
 
 // Import react
 import React from 'react';
@@ -22,6 +23,7 @@ const Home = () => {
       <div className='mainContainer'>
         <Routes>
           <Route path='/mainPage' element = {<MainPage />} />
+          <Route path='/trackCrime' element = {<TrackCrime />} />
           <Route path='/howItWorks' element = {<HowItWorks />} />
           <Route path='/contactUs' element = {<ContactUs />} />
           <Route path='/aboutUs' element = {<AboutUs />} />
