@@ -46,11 +46,12 @@ CREATE TABLE Crime (
     CrimeDate VARCHAR(255),
     CrimeCategory VARCHAR(255),
 	Involved_parties VARCHAR(999),
-    Comment VARCHAR(255),
+	CrimeStatus VARCHAR(255) DEFAULT 'Submitted',
+    Comment VARCHAR(999),
     Anonimity VARCHAR(255),
     UserID VARCHAR(255),
-    -- Image
     FOREIGN KEY (UserID) REFERENCES tbl_Users (UserID)
-)
+);
+
 
 ```

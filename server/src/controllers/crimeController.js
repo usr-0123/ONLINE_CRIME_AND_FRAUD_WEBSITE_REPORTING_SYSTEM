@@ -17,7 +17,8 @@ import {
     deleteCrimeService,
     addCrimeService,
     updateCrimeService,
-    getCrimeByUIDService
+    getCrimeByUIDService,
+    updateCrimeStatusService
 } from '../services/crimeService.js'
 
 import { crimeValidator } from '../validators/crimeValidators.js'
@@ -58,6 +59,7 @@ export const getCrimeByUID = async (req, res) => {
     try {
         const UserID = req.params.UserID;
         const Crime = await getCrimeByUIDService(UserID)
+        // console.log("Logged crime", Crime);
         if (crimeValidator.length === 0) {
             sendNotFound(res, 'Crime not found');
         } else {
@@ -189,18 +191,62 @@ export const sendMail = async (
 export const updateCrime = async (req, res) => {
     try {
         const CrimeID = req.params.CrimeID;
-        const { CrimeDate, CrimeCategory, Involved_parties, Comment, Anonimity, UserID } = req.body;
-        const {error} = crimeValidator ({ CrimeDate, CrimeCategory, Involved_parties, Comment, Anonimity, UserID })
-        if (error) {
-            return res.status(400).send(error.details[0].message);
-        } else {}
-        const response = await updateCrimeService(CrimeID, CrimeDate, CrimeCategory, Involved_parties, Comment, Anonimity, UserID)
+
+        // console.log("Logged the req.params:", req.params);
+
+        const CrimeToUpdate = await getCrimeByIDService(CrimeID)
+
+        // console.log("Logged the crime to update", CrimeToUpdate);
+
+        console.log("Logged the req.body", req.body);
+
+        if (CrimeToUpdate.length === 0) {
+            sendNotFound(res, response.message)
+        } else {
+
+        const response = await updateCrimeService(CrimeID, req.body)
+        // console.log("Logged the response after update crime service", response);
+
         if (response.error) {
             sendNotFound(res, "Crime not found or not updated")
         } else {
             return sendCreated(res, "Crime updated successfully")
         }
-    } catch (error) {
+    }} catch (error) {
+        sendServerError(res, error.message);
+    }
+}
+
+// Controller to update crime status
+export const updateCrimeStatus = async (req, res) => {
+    try {
+        const CrimeID = req.params.CrimeID;
+
+        // console.log("Logged the req.params:", req.params);
+
+        const CrimeToUpdate = await getCrimeByIDService(CrimeID)
+
+        // console.log("Logged the crime to update", CrimeToUpdate);
+
+        // console.log("Logged the req.body", req.body);
+
+        if (CrimeToUpdate.length === 0) {
+            sendNotFound(res, response.message)
+        } else {
+
+            const { CrimeStatus } = req.body
+
+            // console.log("Logged the crime status entry fetched from the req.body", CrimeStatus);
+
+        const response = await updateCrimeStatusService(CrimeID, CrimeStatus)
+        // console.log("Logged the response after update crime service", response);
+
+        if (response.error) {
+            sendNotFound(res, "Crime not found or not updated")
+        } else {
+            return sendCreated(res, "Crime updated successfully")
+        }
+    }} catch (error) {
         sendServerError(res, error.message);
     }
 }

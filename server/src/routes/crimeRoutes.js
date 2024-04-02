@@ -6,7 +6,8 @@ import {
     getCrimeByID,
     getCrimeByUID,
     updateCrime,
-    deleteCrime
+    deleteCrime,
+    updateCrimeStatus
 } from "../controllers/crimeController.js";
 
 const crimeRouter = Router();
@@ -18,6 +19,7 @@ crimeRouter.get('/crime/:CrimeID', getCrimeByID);
 crimeRouter.get('/crime/fetchByUID/:UserID', getCrimeByUID);
 
 crimeRouter.put('/crime/update/:CrimeID', updateCrime);
+crimeRouter.put('/crime/updateStatus/:CrimeID', updateCrimeStatus);
 crimeRouter.delete('/crime/delete/:CrimeID', deleteCrime);
 
 export default crimeRouter;

@@ -5,7 +5,7 @@ Content-Type:  application/json
 {
     "UserID":"0fc83649-6068-477b-a33c-78fb4b06d918",
     "CrimeDate":"09-10-2024",
-    "CrimeCategory":"Cyberbullying",
+    "CrimeCategory":"Testing update",
     "Involved_parties":"Kabarak",
     "Comment":"Involved in creating fake news",
     "Anonimity":"True"
@@ -16,22 +16,32 @@ Content-Type:  application/json
 GET http://localhost:8000/api/crimes
 
 ###
-GET http://localhost:8000/api/crime/fetchByUID/f26e38e2-c669-45c6-92a5-a32acd96b397
+GET http://localhost:8000/api/crime/fetchByUID/4a8f3b90-3352-46e7-8357-6a8dbddf6fab
 
 ###
-GET http://localhost:8000/api/crime/38de66e7-da73-446b-8cd3-537d7e62edb5
+GET http://localhost:8000/api/crime/4a8f3b90-3352-46e7-8357-6a8dbddf6fab
 
+# /crime/updateStatus/:CrimeID
 ###
-PUT http://localhost:8000/api/crime/update/38de66e7-da73-446b-8cd3-537d7e62edb5
+PUT http://localhost:8000/api/crime/update/4a8f3b90-3352-46e7-8357-6a8dbddf6fab
 Content-Type: application/json
 
 {
-    "UserID":"f26e38e2-c669-45c6-92a5-a32acd96b397",
+    "UserID":"0fc83649-6068-477b-a33c-78fb4b06d918",
     "CrimeDate":"09-10-2024",
     "CrimeCategory":"Cyberbullying",
-    "Involved_parties":"Kabarak",
+    "Involved_parties":"Kirinyaga",
+    "CrimeStatus": "Reported",
     "Comment":"Involved in creating fake news",
     "Anonimity":"False"
+}
+
+###
+PUT http://localhost:8000/api/crime/updateStatus/4a8f3b90-3352-46e7-8357-6a8dbddf6fab
+Content-Type: application/json
+
+{
+    "CrimeStatus": "Resolved testing update"
 }
 
 ###
