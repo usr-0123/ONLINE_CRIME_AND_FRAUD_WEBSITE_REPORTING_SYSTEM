@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './CrimeReportsList.scss';
 import { FaChevronRight } from 'react-icons/fa';
 import { useUpdateCrimeStatusMutation, useDeleteCrimeMutation, useGetCrimesQuery } from '../../features/CrimeApi';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CrimeReports = () => {
   const { data: crimeEntries, error, isLoading, refetch } = useGetCrimesQuery();
@@ -17,6 +18,7 @@ const CrimeReports = () => {
   const handleDelete = async (crimeID) => {
     try {
       await deleteCrimeMutation(crimeID);
+      toast.success('Crime entry deleted successfully')
       refetch(); // Refetch data after deletion
     } catch (error) {
       console.error('Error deleting crime:', error);
@@ -32,6 +34,8 @@ const CrimeReports = () => {
 
       // Call the mutation function to update the entry
       await updateCrimeStatusMutation(updateCrime);
+
+      toast.success(`Crime status updated to : ${selectedStatus} successfully`)
 
       // Refetch data after update
       refetch();
@@ -67,6 +71,7 @@ const CrimeReports = () => {
             <div className="crimeAllReportEntry">
               <span className="crimeAllReportEntryHeader">Date: </span>
               <span>{entry.CrimeDate}</span>
+              <span>{entry.CrimeTime}</span>
             </div>
             {/* <div className='crimeAllReportEntry'>
                     <span className='crimeAllReportEntryHeader'>Time: </span>
