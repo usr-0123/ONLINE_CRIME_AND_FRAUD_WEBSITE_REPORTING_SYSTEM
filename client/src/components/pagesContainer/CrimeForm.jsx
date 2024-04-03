@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CrimeForm.scss';
 import { useAddCrimeMutation } from '../../features/CrimeApi.js';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CrimeForm = () => {
   const [crimeCategory, setCrimeCategory] = useState('');
@@ -32,6 +33,9 @@ const CrimeForm = () => {
 
       // Call the add crime mutation
       await addCrime(crimeData);
+
+      // Toast notification for successful registration
+      toast.success('Crime reported successfully. Check your email')
 
       // Reset form fields after successful submission
       setCrimeCategory('');

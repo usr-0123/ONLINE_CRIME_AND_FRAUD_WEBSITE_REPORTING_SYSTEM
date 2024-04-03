@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 // Import stylefile
 import './LoginSignUpForm.scss'
 
@@ -34,6 +36,8 @@ const LoginForm = () => {
 
       // Call the authentication mutation
       const response = await authenticateUser({ Email_address: email, Password: password });
+
+      // console.log("logged the responxe", response.token);
   
       // Check if authentication was successful
       if (response.data) {
@@ -50,13 +54,16 @@ const LoginForm = () => {
         // Navigate based on User_rank
         if (User_rank === "User") {
           navigate('/mainPage');
+          toast.success('User login successful')
         } else {
           navigate('/admin/adminDashboard');
+          toast.success('Admin login successful')
         }
       } else {
 
         // Handle authentication failure
-        console.error('Authentication failed');
+        // console.error('Authentication failed');
+        toast.error('Authentication failed');
       }
     } catch (error) {
 
@@ -86,7 +93,7 @@ const LoginForm = () => {
         />
       </div>
       <button type="submit" disabled={isLoading}>Submit</button>
-      {isError && <div>Login details are incorrect!</div>}
+      {/* {isError && <div>Login details are incorrect!</div>} */}
     </form>
   );
 };

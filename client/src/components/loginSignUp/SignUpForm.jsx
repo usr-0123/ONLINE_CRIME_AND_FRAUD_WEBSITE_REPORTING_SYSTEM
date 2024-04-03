@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginSignUpForm.scss';
 import { useRegisterUserMutation } from '../../features/UserApi';
+import { ToastContainer, toast } from 'react-toastify';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const SignUpForm = () => {
 
     // Check if any of the input fields are empty
     if (!firstName || !lastName || !email || !password) {
+      // toast.error('Please fill out all fields');
       console.error('Please fill out all fields');
       return; // Prevent form submission
     }
@@ -46,19 +48,22 @@ const SignUpForm = () => {
 
       // Check if registration was successful
       if (response.data) {
-        console.log("Logged the response.data:", response.data);
+        // console.log("Logged the response.data:", response.data);
 
         const user = response.data.user;
-        console.log("Logged the user details at the signup form:", user);
+        // console.log("Logged the user details at the signup form:", user);
         // Store user details in local storage
         storeUserDetailsInLocalStorage(user);
+
+        // Toast notification on success
+        toast.success('Registration successful. Now login')
 
         // Redirect to main page after registration
         navigate('/');
 
       } else {
         // Handle registration failure
-        console.error('Registration failed');
+        toast.error('Registration failed');
       }
     } catch (error) {
       // Handle error

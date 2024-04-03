@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CrimeReports.scss';
 import { useDeleteCrimeMutation, useGetCrimeByUidQuery } from '../../features/CrimeApi';
 import { MdDelete } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 const CrimeReports = () => {
   // Retrieve UserID from local storage
@@ -29,6 +30,9 @@ const CrimeReports = () => {
     try {
       // Execute deletion mutation
       await deleteCrimeMutation(CrimeID);
+
+      // Toast notification after delete successful
+      toast.success('Crime entry deleted successfully')
 
       // Remove deleted entry from the state
       setCrimeEntries(crimeEntries.filter(entry => entry.CrimeID !== CrimeID));

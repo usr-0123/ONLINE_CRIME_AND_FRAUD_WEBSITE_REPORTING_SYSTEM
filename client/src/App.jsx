@@ -5,6 +5,10 @@ import './App.css'
 import React from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // Import components
 import Home from './pages/home/Home.jsx'
 import Login from './pages/loginSignUp/Login.jsx'
@@ -21,6 +25,7 @@ function App() {
         <Route path='*' element={<Home />}/>
         <Route path='/admin/*' element={<Admin />} />
       </Routes>
+      <ToastContainer />
     </>
   )
 }
