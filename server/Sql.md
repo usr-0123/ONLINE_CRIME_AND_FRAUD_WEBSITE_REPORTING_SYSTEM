@@ -44,6 +44,7 @@ CREATE TABLE Categories (
 CREATE TABLE Crime (
     CrimeID VARCHAR(255) PRIMARY KEY,
     CrimeDate VARCHAR(255),
+	CrimeTime VARCHAR(255),
     CrimeCategory VARCHAR(255),
 	Involved_parties VARCHAR(999),
 	CrimeStatus VARCHAR(255) DEFAULT 'Submitted',

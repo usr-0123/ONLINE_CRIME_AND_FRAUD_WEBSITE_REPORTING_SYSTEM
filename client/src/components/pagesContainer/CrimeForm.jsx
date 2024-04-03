@@ -5,6 +5,7 @@ import { useAddCrimeMutation } from '../../features/CrimeApi.js';
 const CrimeForm = () => {
   const [crimeCategory, setCrimeCategory] = useState('');
   const [crimeDate, setCrimeDate] = useState('');
+  const [crimeTime, setCrimeTime] = useState('');
   const [involvedParties, setInvolvedParties] = useState('');
   const [comment, setComment] = useState('');
   const [anonymity, setAnonymity] = useState('');
@@ -22,13 +23,12 @@ const CrimeForm = () => {
       const crimeData = {
         UserID: userId,
         CrimeDate: crimeDate,
+        CrimeTime: crimeTime,
         CrimeCategory: crimeCategory,
         Involved_parties: involvedParties,
         Comment: comment,
         Anonimity: anonymity
       }
-
-      // console.log("Logged crimeData", crimeData);
 
       // Call the add crime mutation
       await addCrime(crimeData);
@@ -36,6 +36,7 @@ const CrimeForm = () => {
       // Reset form fields after successful submission
       setCrimeCategory('');
       setCrimeDate('');
+      setCrimeTime('');
       setInvolvedParties('');
       setComment('');
       setAnonymity('');
@@ -76,13 +77,14 @@ const CrimeForm = () => {
         </div>
         <div className='MainPageNewFormDate'>
           <input type="date" value={crimeDate} onChange={(e) => setCrimeDate(e.target.value)} />
-          <div className='MainPageNewFormDate'>
-            <select value={anonymity} onChange={(e) => setAnonymity(e.target.value)}>
-              <option value="">Select anonimity...</option>
-              <option value="Anonimous">Anonimous</option>
-              <option value="Public">Public</option>
-            </select>
-          </div>
+          <input type="time" value={crimeTime} onChange={(e) => setCrimeTime(e.target.value)}/>
+        </div>
+        <div className='MainPageNewFormCrimeType'>
+          <select value={anonymity} onChange={(e) => setAnonymity(e.target.value)}>
+            <option value="">Select anonimity...</option>
+            <option value="Anonimous">Anonimous</option>
+            <option value="Public">Public</option>
+          </select>
         </div>
         <div className='MainPageNewFormParties'>
           <input type="text" placeholder='Enter involved individuals or organisations...' value={involvedParties} onChange={(e) => setInvolvedParties(e.target.value)} />

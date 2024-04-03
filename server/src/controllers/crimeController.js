@@ -90,14 +90,14 @@ export const deleteCrime = async (req, res) => {
 }
 
 export const addCrime = async (req, res) => {
-    const { UserID, CrimeDate, CrimeCategory, Involved_parties, Comment, Anonimity } = req.body;
-    const {error} = crimeValidator({ CrimeDate, CrimeCategory, Involved_parties, Comment, Anonimity, UserID });
+    const { UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity } = req.body;
+    const {error} = crimeValidator({ CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, UserID });
     if (error) {
         return res.status(400).send(error.details[0].message)
     } else {
         try {
             const CrimeID = v4();
-            const newCrime = { CrimeID, UserID, CrimeDate, CrimeCategory, Involved_parties, Comment, Anonimity }
+            const newCrime = { CrimeID, UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity }
             const response = await addCrimeService(newCrime)
 
             if (response.message) {
@@ -117,6 +117,7 @@ export const addCrime = async (req, res) => {
                     Last_name,
                     CrimeID,
                     CrimeDate,
+                    CrimeTime,
                     CrimeCategory,
                     Involved_parties,
                     Comment,
@@ -138,6 +139,7 @@ export const sendMail = async (
     Last_name,
     CrimeID,
     CrimeDate,
+    CrimeTime,
     CrimeCategory,
     Involved_parties,
     Comment,
@@ -162,7 +164,7 @@ export const sendMail = async (
         <p>Dear User ${First_name} ${Last_name},</p>
         <p>We have recieved your case and we are working on it to resolve it as fast as possible</p>
         <p>The sent crime with the details below has been recieved:</p>
-        <p>Crime date: ${CrimeDate}</p>
+        <p>Crime date: ${CrimeDate} at ${CrimeTime}</p>
         <p>Crime category: ${CrimeCategory}</p>
         <p>Involved parties reported are: ${Involved_parties}</p>
         <p>The comment delivered is: ${Comment}</p>
@@ -198,7 +200,7 @@ export const updateCrime = async (req, res) => {
 
         // console.log("Logged the crime to update", CrimeToUpdate);
 
-        console.log("Logged the req.body", req.body);
+        // console.log("Logged the req.body", req.body);
 
         if (CrimeToUpdate.length === 0) {
             sendNotFound(res, response.message)

@@ -5,6 +5,7 @@ Content-Type:  application/json
 {
     "UserID":"0fc83649-6068-477b-a33c-78fb4b06d918",
     "CrimeDate":"09-10-2024",
+    "CrimeTime":"09:20 am",
     "CrimeCategory":"Testing update",
     "Involved_parties":"Kabarak",
     "Comment":"Involved in creating fake news",

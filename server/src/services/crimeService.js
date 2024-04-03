@@ -48,12 +48,13 @@ export const addCrimeService = async (crime) => {
         const result = await poolRequest()
         .input("CrimeID", sql.VarChar, crime.CrimeID)
         .input("CrimeDate", sql.VarChar, crime.CrimeDate)
+        .input("CrimeTime", sql.VarChar, crime.CrimeTime)
         .input("CrimeCategory", sql.VarChar, crime.CrimeCategory)
         .input("Involved_parties", sql.VarChar, crime.Involved_parties)
         .input("Comment", sql.VarChar, crime.Comment)
         .input("Anonimity", sql.VarChar, crime.Anonimity)
         .input("UserID", sql.VarChar, crime.UserID)
-        .query("INSERT INTO Crime ( CrimeID,CrimeDate,CrimeCategory,Involved_parties,Comment,Anonimity,UserID ) VALUES ( @CrimeID, @CrimeDate, @CrimeCategory, @Involved_parties, @Comment, @Anonimity, @UserID )")
+        .query("INSERT INTO Crime ( CrimeID,CrimeDate,CrimeTime,CrimeCategory,Involved_parties,Comment,Anonimity,UserID ) VALUES ( @CrimeID, @CrimeDate, @CrimeTime, @CrimeCategory, @Involved_parties, @Comment, @Anonimity, @UserID )")
         return result;
     } catch (error) {
         return error;
@@ -65,13 +66,14 @@ export const updateCrimeService = async (CrimeID, crime) => {
         const result = await poolRequest()
         .input("CrimeID", sql.VarChar, CrimeID)
         .input("CrimeDate", sql.VarChar, crime.CrimeDate)
+        .input("CrimeTime", sql.VarChar, crime.CrimeTime)
         .input("CrimeCategory", sql.VarChar, crime.CrimeCategory)
         .input("Involved_parties", sql.VarChar, crime.Involved_parties)
         .input("CrimeStatus", sql.VarChar, crime.CrimeStatus)
         .input("Comment", sql.VarChar, crime.Comment)
         .input("Anonimity", sql.VarChar, crime.Anonimity)
         .input("UserID", sql.VarChar, crime.UserID)
-        .query("UPDATE Crime SET CrimeStatus = @CrimeStatus, CrimeDate = @CrimeDate, CrimeCategory = @CrimeCategory, Involved_parties = @Involved_parties, Comment = @Comment, Anonimity = @Anonimity WHERE CrimeID = @CrimeID")
+        .query("UPDATE Crime SET CrimeStatus = @CrimeStatus, CrimeDate = @CrimeDate, CrimeTime = @CrimeTime, CrimeCategory = @CrimeCategory, Involved_parties = @Involved_parties, Comment = @Comment, Anonimity = @Anonimity WHERE CrimeID = @CrimeID")
         // console.log("Logged the result", crime.CrimeStatus);
         return result;
 
