@@ -12,14 +12,14 @@ const CrimeReports = () => {
   const [updateCrimeStatusMutation] = useUpdateCrimeStatusMutation();
 
   useEffect(() => {
-    refetch(); // Fetch data initially
+    refetch();
   }, [refetch]);
 
   const handleDelete = async (crimeID) => {
     try {
       await deleteCrimeMutation(crimeID);
       toast.success('Crime entry deleted successfully')
-      refetch(); // Refetch data after deletion
+      refetch();
     } catch (error) {
       console.error('Error deleting crime:', error);
     }
@@ -28,16 +28,14 @@ const CrimeReports = () => {
   const handleUpdate = async (crimeID) => {
     try {
       const updateCrime = {
-        CrimeID: crimeID, // Pass the CrimeID along with the CrimeStatus
+        CrimeID: crimeID,
         CrimeStatus: selectedStatus,
       };
 
-      // Call the mutation function to update the entry
       await updateCrimeStatusMutation(updateCrime);
 
       toast.success(`Crime status updated to : ${selectedStatus} successfully`)
 
-      // Refetch data after update
       refetch();
     } catch (error) {
       console.error('Error updating entry:', error);
@@ -45,11 +43,11 @@ const CrimeReports = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>; // Render loading indicator
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>; // Render error message
+    return <div>Error: {error.message}</div>;
   }
 
   return (
@@ -57,7 +55,7 @@ const CrimeReports = () => {
       <ul className="crimeAllReportsUList">
         {crimeEntries.map((entry, index) => (
           <li key={index} className="crimeAllReportsList">
-            <div className='crimeAllReportsUListContainer'>
+          <div className='crimeAllReportsUListContainer'>
               <div className='crimedatacontainer'>
                 
             <div className="crimeAllReportEntry">
@@ -73,18 +71,10 @@ const CrimeReports = () => {
               <span>{entry.CrimeDate}</span>
               <span>{entry.CrimeTime}</span>
             </div>
-            {/* <div className='crimeAllReportEntry'>
-                    <span className='crimeAllReportEntryHeader'>Time: </span>
-                    <span>{entry.time}</span>
-                </div> */}
             <div className="crimeAllReportEntry">
               <span className="crimeAllReportEntryHeader">Involved Parties: </span>
               <span>{entry.Involved_parties}</span>
             </div>
-            {/* <div className='crimeAllReportEntry'>
-                    <span className='crimeAllReportEntryHeader'>Involved Organizations: </span>
-                    <span>{entry.involvedOrganizations}</span>
-                </div> */}
             <div className="crimeAllReportEntry">
               <span className="crimeAllReportEntryHeader">CrimeStatus: </span>
               <span>{entry.CrimeStatus}</span>
@@ -96,7 +86,7 @@ const CrimeReports = () => {
             </div>
             <div className="actionsTab">
               <button onClick={() => handleDelete(entry.CrimeID)}>Delete</button>
-              {/* Updating crime entry */}
+
               <div className='actionsTabInput'>
                 <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
                   <option value="">Select Status</option>
@@ -108,9 +98,10 @@ const CrimeReports = () => {
                 </select>
                 <button onClick={() => handleUpdate(entry.CrimeID)}>Update</button>
               </div>
-              <button>Report</button>
+
+              {/* <button>Report</button> */}
             </div>
-            </div>
+          </div>
           </li>
         ))}
       </ul>
