@@ -10,8 +10,11 @@ import Blog4 from '../assets/cyberBullying.jpeg'
 const MainLayout = () => {
   return (
     <div className='Main-Layout'>
-      <h1>Empower Your Decision-Making with Real-Time Insights</h1>
-      <h2>Welcome to Online Reporting System</h2>
+      <div className='Main-Layout-header'>
+        <h1>Empower Your Decision-Making with Real-Time Insights</h1>
+        <h2>Welcome to Online Reporting System</h2>
+      </div>
+      
       <div className='blog-container'>
         <div className='blog-image'>
           <img src={Blog1} alt="err" />

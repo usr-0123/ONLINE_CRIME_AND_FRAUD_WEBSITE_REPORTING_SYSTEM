@@ -25,7 +25,7 @@ import MainLayout from './layouts/MainLayout.jsx';
 function App() {
 
   return (
-    <>
+    <div className='app'>
     <div className="navbar">
       <MainNavbar />
     </div>
@@ -43,7 +43,7 @@ function App() {
       <ToasterContainer />
       <ToastContainer />
       <Toaster />
-    </>
+    </div>
   )
 }
 

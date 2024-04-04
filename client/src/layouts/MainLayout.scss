@@ -2,19 +2,27 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: #0d2d5e;
+    // background-color: #0d2d5e;
+    background: url('../assets/back.jpeg') center/cover fixed;
     margin: 10px 0 0 0;
     padding: 10px;
     border-radius: 5px;
 
-    h1 {
-        color: #fff;
-        font-size: 40px;
-        font-weight: 1000;
-    }
+    .Main-Layout-header {
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #000;
+            opacity: 50%;
 
-    h2 {
-        color: #fff;
+        h1 {
+            color: #fff;
+            font-size: 40px;
+            font-weight: 1000;        
+        }
+    
+        h2 {
+            color: #fff;
+        }
     }
 
     .blog-container {
@@ -24,6 +32,7 @@
         border-radius: 5px;
         width: 80%;
         padding: 10px;
+        opacity: 80%;
 
         .blog-image {
             border-radius: 5px;

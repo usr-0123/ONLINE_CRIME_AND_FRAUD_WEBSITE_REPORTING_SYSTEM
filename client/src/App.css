@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+.app {
+  /* background: url('../assets/') fixed; */
+}
+
 .navbar {
   background-color: #fd0000;
   background-color: #0d2d5e;
