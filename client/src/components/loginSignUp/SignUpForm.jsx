@@ -4,6 +4,8 @@ import './LoginSignUpForm.scss';
 import { useRegisterUserMutation } from '../../features/UserApi';
 import { ToastContainer, toast } from 'react-toastify';
 
+import { ToasterContainer, SuccessToast, ErrorToast, LoadingToast } from '../toaster/Toaster';
+
 const SignUpForm = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
@@ -56,14 +58,16 @@ const SignUpForm = () => {
         storeUserDetailsInLocalStorage(user);
 
         // Toast notification on success
-        toast.success('Registration successful. Now login')
+        // toast.success('Registration successful. Now login')
+        SuccessToast('Registration successful. Now login')
 
         // Redirect to main page after registration
         navigate('/');
 
       } else {
         // Handle registration failure
-        toast.error('Registration failed');
+        // toast.error('Registration failed');
+        ErrorToast('Registration failed')
       }
     } catch (error) {
       // Handle error
@@ -113,6 +117,7 @@ const SignUpForm = () => {
       </div>
       <button type="submit" disabled={isLoading}>Register</button>
       {isError && <div>Unable to register your details</div>}
+      <ToasterContainer />
     </form>
   );
 };

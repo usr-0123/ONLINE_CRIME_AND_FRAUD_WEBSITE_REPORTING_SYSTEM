@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './CrimeReports.scss';
 import { useDeleteCrimeMutation, useGetCrimeByUidQuery } from '../../features/CrimeApi';
 import { MdDelete } from "react-icons/md";
-import { ToastContainer, toast } from 'react-toastify';
+
+// ToasterContainer
+import { ToasterContainer, SuccessToast, ErrorToast, LoadingToast } from '../toaster/Toaster';
+
+// Spinner
+import BeatLoader from 'react-spinners/BeatLoader'
 
 const CrimeReports = () => {
   // Retrieve UserID from local storage
@@ -14,6 +19,10 @@ const CrimeReports = () => {
 
   // Fetch crime entries using the useGetCrimeByUidQuery hook
   const { data: crimes, isError, isLoading } = useGetCrimeByUidQuery(UserID, { refetchOnReconnect: true });
+
+  // <BeatLoader color="#36d7b7" />
+  // BeatLoader
+
 
   // Update state variable with fetched data
   useEffect(() => {
@@ -32,16 +41,24 @@ const CrimeReports = () => {
       await deleteCrimeMutation(CrimeID);
 
       // Toast notification after delete successful
-      toast.success('Crime entry deleted successfully')
-
       // Remove deleted entry from the state
       setCrimeEntries(crimeEntries.filter(entry => entry.CrimeID !== CrimeID));
+
+      SuccessToast(`Crime entry with tracking number ${CrimeID} deleted successfully`)
+
     } catch (error) {
+
       console.error('Error deleting crime:', error);
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+  {
+    // LoadingToast(true)
+    // ErrorToast('Fetching entries')
+
+    return <div> <BeatLoader /> </div>;
+  }
   if (isError) return <div>Error fetching crime entries.</div>;
 
   return (
@@ -101,6 +118,7 @@ const CrimeReports = () => {
       {/* <div>
         {showEditForm && <CrimeEditForm />}
       </div> */}
+      <ToasterContainer />
     </div>
   );
 };

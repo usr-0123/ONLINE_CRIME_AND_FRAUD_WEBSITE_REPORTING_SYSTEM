@@ -1,9 +1,16 @@
   Check on the order of hooks
 
-  add a function to display the person who posted and implement checking anonimity
+ Add a function to display the person who posted and implement checking anonimity
 
-  Add a reply option from the admin
+ Add a reply option from the admin
 
-  fix the bug to fetch the crime entry progress
+Change the followimg pages to be on the landing page
+ How it works,
+ Contact us,
+ About us,
 
-  complete the project by data cleaning
+ Update profile functions
+
+ Upload images
+
+ complete the project by data cleaning

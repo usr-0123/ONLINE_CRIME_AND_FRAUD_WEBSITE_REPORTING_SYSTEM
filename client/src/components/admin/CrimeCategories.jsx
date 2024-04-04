@@ -34,8 +34,6 @@ const CrimeCategories = () => {
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching crime entries.</div>;
 
-    // console.log("Logged crime entries:", crimeEntries);
-
     const crimes = [
       "Testing update",
       "Phishing",
@@ -58,7 +56,7 @@ const CrimeCategories = () => {
     return (
         <div className="crimeCategories">
             <ul className='crimeCategoriesUList'>
-                {crimes.map((category, index) => (
+            {crimes.filter(category => crimeEntries.some(entry => entry.CrimeCategory === category)).map((category, index) => (
                     <li key={index} className='crimeCategoriesList'>
                         <div className='crimeCategoriesEntry'>
                             <span className='crimeCategoriesEntryHeader'>{category}</span>

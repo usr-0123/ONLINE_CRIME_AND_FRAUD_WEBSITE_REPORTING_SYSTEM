@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './TrackCrime.scss';
 import { useGetCrimeByIDQuery } from '../../features/CrimeApi';
+import { ToasterContainer, SuccessToast, ErrorToast } from '../../components/toaster/Toaster';
+import ScaleLoader from 'react-spinners/ScaleLoader'
 
 const TrackCrime = () => {
   const [crimeID, setCrimeID] = useState('');
-  const [crimeData, setCrimeData] = useState(null);
+  const [crimeData, setCrimeData] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const { data: response, error, isLoading: queryLoading } = useGetCrimeByIDQuery(crimeID);
+  const { data: response, error, loading } = useGetCrimeByIDQuery(crimeID);
 
   useEffect(() => {
     if (response) {
       setCrimeData(response);
       setIsLoading(false);
-      setIsError(false); // Reset error state when data is available
+      setIsError(false);
     } else if (error) {
       setIsError(true);
       setIsLoading(false);
@@ -36,13 +38,10 @@ const TrackCrime = () => {
         placeholder="Enter Crime ID"
         className='track-crime-input'
       />
+
+      <div>{loading ? <ScaleLoader /> : ! <ScaleLoader />}</div>
       
-      {queryLoading ? (
-        <p>Loading...</p>
-      ) : isError && !crimeData ? (
-        <p>We cannot find crime by the tracking number given, please check the crime number and try again</p>
-      ) : (
-        crimeData && (
+      {crimeData && crimeData.length > 0 ? (
           <div className='track-crime-data'>
             <span>
               <h2>Crime Details</h2>
@@ -66,8 +65,10 @@ const TrackCrime = () => {
               <p>Comments: {crimeData[0].Comment}</p>
             </span>
           </div>
+        ) : (
+          <div>There is no entries for the tracking number entered</div>
         )
-      )}
+      }
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './CrimeForm.scss';
 import { useAddCrimeMutation } from '../../features/CrimeApi.js';
 import { ToastContainer, toast } from 'react-toastify';
+import { ToasterContainer, SuccessToast, ErrorToast } from '../toaster/Toaster.jsx';
+import BeatLoader from 'react-spinners/BeatLoader'
 
 const CrimeForm = () => {
   const [crimeCategory, setCrimeCategory] = useState('');
@@ -35,7 +37,7 @@ const CrimeForm = () => {
       await addCrime(crimeData);
 
       // Toast notification for successful registration
-      toast.success('Crime reported successfully. Check your email')
+      SuccessToast('Crime reported successfully. Check your email for the tracking number')
 
       // Reset form fields after successful submission
       setCrimeCategory('');
@@ -97,8 +99,9 @@ const CrimeForm = () => {
         {/* <div className='MainPageNewFormEvidence'> */}
           {/* <input type="file" /> */}
         {/* </div> */}
-        <button type="submit" disabled={isLoading}>Submit Report</button>
-        {isError && <div>Unable to submit crime report</div>}
+        <button type="submit" disabled={isLoading}> {isLoading ? <BeatLoader color='#103777'/> : 'Submit Report'} </button>
+
+        {isError && <div>Please provide all the fields required</div>}
       </form>
     </div>
   );

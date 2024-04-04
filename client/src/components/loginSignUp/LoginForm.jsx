@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
+
+import { ToasterContainer, LoadingToast, SuccessToast, ErrorToast } from '../toaster/Toaster.jsx';
 
 // Import stylefile
 import './LoginSignUpForm.scss'
@@ -16,6 +18,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [authenticateUser, { isLoading, isError }] = useAuthenticateUserMutation();
+
+  // LoadingToast(false)
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -36,15 +40,11 @@ const LoginForm = () => {
 
       // Call the authentication mutation
       const response = await authenticateUser({ Email_address: email, Password: password });
-
-      // console.log("logged the responxe", response.token);
   
       // Check if authentication was successful
       if (response.data) {
 
         const user = response.data.user;
-
-        // console.log("Logged the user details at the login form:", user);
 
         const User_rank = (response.data.user.User_rank)
 
@@ -54,16 +54,17 @@ const LoginForm = () => {
         // Navigate based on User_rank
         if (User_rank === "User") {
           navigate('/mainPage');
-          toast.success('User login successful')
+          SuccessToast('Login succesful. You logged in as a User')
+
         } else {
           navigate('/admin/adminDashboard');
-          toast.success('Admin login successful')
+          SuccessToast('Login succesful. You logged in as an Admin')
+
         }
       } else {
 
         // Handle authentication failure
-        // console.error('Authentication failed');
-        toast.error('Authentication failed');
+        ErrorToast('Login credentials incorrect!')
       }
     } catch (error) {
 
@@ -73,7 +74,8 @@ const LoginForm = () => {
   };
   
   return (
-    <form className='lsForm' onSubmit={handleSubmit}>
+    
+    <form className='lsForm' onSubmit={handleSubmit}>      
       <div className='lsFormDiv'>
         <label htmlFor="email">Email</label>
         <input
@@ -93,7 +95,7 @@ const LoginForm = () => {
         />
       </div>
       <button type="submit" disabled={isLoading}>Submit</button>
-      {/* {isError && <div>Login details are incorrect!</div>} */}
+      <ToasterContainer />
     </form>
   );
 };

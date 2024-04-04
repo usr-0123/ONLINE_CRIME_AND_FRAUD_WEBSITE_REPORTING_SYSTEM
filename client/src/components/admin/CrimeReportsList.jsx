@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './CrimeReportsList.scss';
 import { FaChevronRight } from 'react-icons/fa';
 import { useUpdateCrimeStatusMutation, useDeleteCrimeMutation, useGetCrimesQuery } from '../../features/CrimeApi';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToasterContainer, ErrorToast, SuccessToast } from '../toaster/Toaster';
+import BeatLoader from 'react-spinners/BeatLoader'
 
 const CrimeReports = () => {
   const { data: crimeEntries, error, isLoading, refetch } = useGetCrimesQuery();
@@ -18,7 +19,7 @@ const CrimeReports = () => {
   const handleDelete = async (crimeID) => {
     try {
       await deleteCrimeMutation(crimeID);
-      toast.success('Crime entry deleted successfully')
+      SuccessToast(`Crime entry ${crimeID} deleted successfully`)
       refetch();
     } catch (error) {
       console.error('Error deleting crime:', error);
@@ -34,7 +35,7 @@ const CrimeReports = () => {
 
       await updateCrimeStatusMutation(updateCrime);
 
-      toast.success(`Crime status updated to : ${selectedStatus} successfully`)
+      SuccessToast(`Crime status updated successfully to : ${selectedStatus}`)
 
       refetch();
     } catch (error) {
@@ -43,7 +44,7 @@ const CrimeReports = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><BeatLoader /></div>;
   }
 
   if (error) {
