@@ -2,15 +2,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 30px 0 0;
 
 .navbarContainerHeader {
-    width: 50%;
+    width: 60%;
 }
 .navbarContainerMenu {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    width: 50%;
+    width: 40%;
     // text-decoration: none;
+    background-color: #0d2d5e;
+    // border-radius: 10px;
+    // padding: 0 10px 0 10px;
+    // color: #fff;
+    // border-bottom: 1px solid black;
 }
 }

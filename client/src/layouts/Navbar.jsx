@@ -31,18 +31,6 @@ const Navbar = () => {
       path: "/trackCrime"
     },
     {
-      name: "How it works",
-      path: "/howItWorks"
-    },
-    {
-      name: "Contact Us",
-      path: "/contactUs"
-    },
-    {
-      name: "About Us",
-      path: "/aboutUs"
-    },
-    {
       name: <FaRegUser style={{width:"30px", height:"30px"}}/>,
       path: "/profile"
     },
@@ -63,9 +51,7 @@ const Navbar = () => {
 
   return (
     <div className='navbarContainer'>
-      <div className='navbarContainerHeader'>
-        <h1>Online Reporting System</h1>
-      </div>
+      <div className='navbarContainerHeader'></div>
       <div className='navbarContainerMenu'>
         {items.map((item) => (
           <div key={item.path} className="menu-item" onClick={() => handleItemClick(item.path, item.name)}>

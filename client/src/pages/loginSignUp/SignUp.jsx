@@ -14,7 +14,7 @@ const SignUp = () => {
   return (
     <div className='lsComponent'>
       <h1 className='lsComponentHeader'>SignUp to your account</h1>
-      <span className='lsComponentSpan'>Already have an account?<p onClick={() => navigate('/')}>Login</p></span>
+      <span className='lsComponentSpan'>Already have an account?<p onClick={() => navigate('/login')}>Login</p></span>
       <div className='lsComponentForm'>
         <SignUpForm />
       </div>

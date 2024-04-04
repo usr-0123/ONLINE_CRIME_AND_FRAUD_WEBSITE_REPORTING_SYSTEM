@@ -3,7 +3,6 @@ import './Home.scss'
 
 // Import components
 import AdminDashboard from '../Admin/AdminDashboard';
-import Navbar from '../../layouts/AdminNavbar';
 import AboutUs from '../PagesContainer/AboutUs';
 import Status from '../Admin/Status';
 import Categories from '../../components/admin/CrimeCategories'
@@ -17,9 +16,7 @@ import { Route, Routes } from 'react-router-dom';
 const Admin = () => {
   return (
     <div className='home'>
-      <div className='navbar'>
-        <Navbar />
-      </div>
+
       <div className='mainContainer'>
         <Routes>
           <Route path='/adminDashboard' element = {<AdminDashboard />}/>
