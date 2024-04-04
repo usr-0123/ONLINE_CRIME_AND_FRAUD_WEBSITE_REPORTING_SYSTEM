@@ -1,0 +1,51 @@
+.Main-Layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #0d2d5e;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    border-radius: 5px;
+
+    h1 {
+        color: #fff;
+        font-size: 40px;
+        font-weight: 1000;
+    }
+
+    h2 {
+        color: #fff;
+    }
+
+    .blog-container {
+        display: flex;
+        gap: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        width: 80%;
+        padding: 10px;
+
+        .blog-image {
+            border-radius: 5px;
+
+            img {
+                height: 350px;
+                width: 500px;
+                border-radius: 5px;
+            }
+        }
+
+        .blog-comment {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                font-size: 20px;
+                font-weight: 700;
+            }
+        }
+    }
+}
