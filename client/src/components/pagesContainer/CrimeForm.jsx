@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './CrimeForm.scss';
 import { useAddCrimeMutation } from '../../features/CrimeApi.js';
-import { ToastContainer, toast } from 'react-toastify';
 import { ToasterContainer, SuccessToast, ErrorToast } from '../toaster/Toaster.jsx';
 import BeatLoader from 'react-spinners/BeatLoader'
 
@@ -12,12 +11,7 @@ const CrimeForm = () => {
   const [involvedParties, setInvolvedParties] = useState('');
   const [comment, setComment] = useState('');
   const [anonymity, setAnonymity] = useState('');
-
-  // Retrieve UserID from local storage
   const userId = JSON.parse(localStorage.getItem('userData')).UserID;
-
-  // console.log("Logged UserID",userId);
-
   const [addCrime, { isLoading, isError }] = useAddCrimeMutation();
 
   const handleSubmit = async (event) => {
@@ -33,13 +27,10 @@ const CrimeForm = () => {
         Anonimity: anonymity
       }
 
-      // Call the add crime mutation
       await addCrime(crimeData);
 
-      // Toast notification for successful registration
       SuccessToast('Crime reported successfully. Check your email for the tracking number')
 
-      // Reset form fields after successful submission
       setCrimeCategory('');
       setCrimeDate('');
       setCrimeTime('');
@@ -96,11 +87,7 @@ const CrimeForm = () => {
           <input type="text" placeholder='Enter involved individuals or organisations...' value={involvedParties} onChange={(e) => setInvolvedParties(e.target.value)} />
           <input type="text" placeholder='Enter crime description...' value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
-        {/* <div className='MainPageNewFormEvidence'> */}
-          {/* <input type="file" /> */}
-        {/* </div> */}
         <button type="submit" disabled={isLoading}> {isLoading ? <BeatLoader color='#103777'/> : 'Submit Report'} </button>
-
         {isError && <div>Please provide all the fields required</div>}
       </form>
     </div>

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
 import { SuccessToast } from '../components/toaster/Toaster';
-import { useGetUserByIdQuery } from '../features/UserApi.js'; // Update the import path as per your project structure
+import { useGetUserByIdQuery } from '../features/UserApi.js';
 
 const MainNavbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,23 +12,19 @@ const MainNavbar = () => {
 
   const userId = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')).UserID : null;
   
-  // Fetch user data using React Query
   const { data: user, isLoading, isError } = useGetUserByIdQuery(userId);
 
   useEffect(() => {
-    // Check if user is logged in when component mounts
     setIsLoggedIn(!!userId);
   }, [userId]);
 
   useEffect(() => {
-    // Update userData state when user data is fetched
     if (user) {
       setUserData(user);
     }
   }, [user]);
 
   const handleLogout = () => {
-    // Clear user data from local storage
     localStorage.removeItem('userData');
     setIsLoggedIn(false);
     SuccessToast('You have logged out successfully');
@@ -57,15 +53,11 @@ const MainNavbar = () => {
     { name: <TbLogout onClick={handleLogout} style={{width:"30px", height:"30px"}}/>, path: "/" }
   ];
 
-  // Define default items
   const items = isLoggedIn ?
-    // If logged in, check user rank and set items accordingly
     (userData && userData.User_rank === 'User' ? userItems : adminItems) :
-    // Default to guest items if not logged in
     guestItems;
 
   const handleItemClick = (path, name) => {
-    // Handle item click logic here if needed
   };
 
   return (

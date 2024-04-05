@@ -1,11 +1,8 @@
-// Import react
 import React from 'react';
 
-// Import components
 import SignUpForm from '../../components/loginSignUp/SignUpForm';
 import { useNavigate } from 'react-router-dom';
 
-// import stylefile
 import './LoginSignUp.scss'
 
 const SignUp = () => {

@@ -1,24 +1,17 @@
-// import { useUpdateCrimeMutation } from "../../features/CrimeApi";
-
 import React, { useState } from 'react';
 import { useUpdateCrimeMutation } from "../../features/CrimeApi";
 
 const CrimeEditForm = () => {
-  // State variables for form inputs
   const [crimeDate, setCrimeDate] = useState('');
   const [crimeCategory, setCrimeCategory] = useState('');
   const [involvedParties, setInvolvedParties] = useState('');
   const [comment, setComment] = useState('');
   const [anonymity, setAnonymity] = useState('');
-
-  // Mutation hook for updating crime
   const [updateCrime, { isLoading, isError }] = useUpdateCrimeMutation();
 
-  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Call the updateCrime mutation with form data
       const response = await updateCrime({
         CrimeDate: crimeDate,
         CrimeCategory: crimeCategory,
@@ -27,10 +20,8 @@ const CrimeEditForm = () => {
         Anonimity: anonymity
       });
 
-      // Handle response if needed
       console.log('Crime updated successfully:', response);
     } catch (error) {
-      // Handle error
       console.error('Error updating crime:', error);
     }
   };
@@ -58,7 +49,6 @@ const CrimeEditForm = () => {
           <option value="">Select crime category...</option>
           <option value="Category 1">Category 1</option>
           <option value="Category 2">Category 2</option>
-          {/* Add more options as needed */}
         </select>
       </div>
       <div>

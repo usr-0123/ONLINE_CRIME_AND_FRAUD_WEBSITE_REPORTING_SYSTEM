@@ -1,9 +1,5 @@
-// Import stylefile
 import './HowItWorks.scss'
 
-// Import components
-
-// Import react
 import React from 'react';
 
 const HowItWorks = () => {

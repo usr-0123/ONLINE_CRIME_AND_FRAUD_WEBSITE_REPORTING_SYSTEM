@@ -99,8 +99,6 @@ const CrimeReports = () => {
                 </select>
                 <button onClick={() => handleUpdate(entry.CrimeID)}>Update</button>
               </div>
-
-              {/* <button>Report</button> */}
             </div>
           </div>
           </li>

@@ -1,12 +1,9 @@
-// Import stylefile
 import './ContactUs.scss'
 
-// Import icons
 import { CiLocationOn } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
 import { IoCall } from "react-icons/io5";
 
-// Import react
 import React from 'react';
 
 const ContactUs = () => {

@@ -9,5 +9,3 @@
  Upload images
 
 consider counting the entries
-
- complete the project by data cleaning

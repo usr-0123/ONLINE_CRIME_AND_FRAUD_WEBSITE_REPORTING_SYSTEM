@@ -1,7 +1,5 @@
-// Import stylefile
 import './Home.scss'
 
-// Import components
 import AdminDashboard from '../Admin/AdminDashboard';
 import AboutUs from '../PagesContainer/AboutUs';
 import Status from '../Admin/Status';
@@ -9,7 +7,6 @@ import Categories from '../../components/admin/CrimeCategories'
 import HowItWorks from '../PagesContainer/HowItWorks';
 import Profile from '../profile/Profile';
 
-// Import react
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 

@@ -1,21 +1,17 @@
-// Import style file
 import './Navbar.scss';
 
 import { FaRegUser } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
 
-// Import components
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-// Import ToasterContainer
 import { ToasterContainer, LoadingToast, SuccessToast, ErrorToast } from '../components/toaster/Toaster.jsx';
 
 const Navbar = () => {
 
   const handleLogout = () => {
 
-    // Clear user data from local storage
     localStorage.removeItem('userData');
 
     SuccessToast('You have logged out successfully')
@@ -43,9 +39,6 @@ const Navbar = () => {
 
   const handleItemClick = (path, name) => {
     
-    // Handle item click logic here if needed
-    // console.log("Clicked on", path);
-
     // SuccessToast(`You navigated to ${name} page`)
   };
 

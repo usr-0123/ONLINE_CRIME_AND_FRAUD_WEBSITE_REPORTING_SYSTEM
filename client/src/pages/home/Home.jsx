@@ -1,7 +1,5 @@
-// Import stylefile
 import './Home.scss'
 
-// Import components
 import MainPage from '../PagesContainer/MainPage';
 import AboutUs from '../PagesContainer/AboutUs';
 import ContactUs from '../PagesContainer/ContactUs';
@@ -9,7 +7,6 @@ import HowItWorks from '../PagesContainer/HowItWorks';
 import Profile from '../profile/Profile';
 import TrackCrime from '../PagesContainer/TrackCrime';
 
-// Import react
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
