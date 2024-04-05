@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Navbar.scss'
 import { NavLink } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";

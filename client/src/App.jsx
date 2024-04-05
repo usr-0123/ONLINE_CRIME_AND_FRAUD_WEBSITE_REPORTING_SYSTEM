@@ -29,6 +29,7 @@ function App() {
     <div className="navbar">
       <MainNavbar />
     </div>
+    <div className='app-contents'>
       <Routes>
         <Route path='/' element={<MainLayout />}/>
         <Route path='/login' element={<Login />}/>
@@ -43,6 +44,7 @@ function App() {
       <ToasterContainer />
       <ToastContainer />
       <Toaster />
+      </div>
     </div>
   )
 }

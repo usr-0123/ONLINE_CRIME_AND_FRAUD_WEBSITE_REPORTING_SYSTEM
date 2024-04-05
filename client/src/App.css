@@ -3,15 +3,27 @@
   padding: 0;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .app {
-  /* background: url('../assets/') fixed; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .navbar {
-  background-color: #fd0000;
   background-color: #0d2d5e;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 0 10px 10px 10px;
   color: #fff;
-  border-bottom: 1px solid black;
+  position: static;
+  height: 10vh;
+}
+
+.app-contents {
+  overflow: auto;
+  height: 83vh;
+  border-radius: 5px;
 }
