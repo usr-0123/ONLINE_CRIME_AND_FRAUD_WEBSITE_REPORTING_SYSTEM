@@ -66,7 +66,7 @@ const TrackCrime = () => {
             </span>
           </div>
         ) : (
-          <div>There is no entries for the tracking number entered</div>
+          <div style={{color:'#fff'}}>There is no entries for the tracking number entered</div>
         )
       }
     </div>

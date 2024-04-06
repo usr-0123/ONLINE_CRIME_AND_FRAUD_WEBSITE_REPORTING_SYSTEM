@@ -54,7 +54,15 @@ export const crimeApi = createApi({
                 body: crime
             }),
             invalidatesTags: ['Crimes']
-        })
+        }),
+
+        upload: builder.mutation({
+            query: (file) => ({
+                url: 'upload-evidense',
+                method: 'POST',
+                body: file
+            })
+        }),
     })
 })
 
@@ -65,5 +73,6 @@ export const {
     useDeleteCrimeMutation,
     useAddCrimeMutation,
     useUpdateCrimeMutation,
-    useUpdateCrimeStatusMutation
+    useUpdateCrimeStatusMutation,
+    useUploadMutation
 } = crimeApi;

@@ -3,7 +3,7 @@ POST http://localhost:8000/api/crime/add
 Content-Type:  application/json
 
 {
-    "UserID":"0fc83649-6068-477b-a33c-78fb4b06d918",
+    "UserID":"5d418375-2d31-48d6-93fc-6c3bc748dda7",
     "CrimeDate":"09-10-2024",
     "CrimeTime":"09:20 am",
     "CrimeCategory":"Testing update",
@@ -22,7 +22,6 @@ GET http://localhost:8000/api/crime/fetchByUID/c78631ac-4334-49e1-a2f2-3a3e09858
 ###
 GET http://localhost:8000/api/crime/c78631ac-4334-49e1-a2f2-3a3e09858d9a
 
-# /crime/updateStatus/:CrimeID
 ###
 PUT http://localhost:8000/api/crime/update/4a8f3b90-3352-46e7-8357-6a8dbddf6fab
 Content-Type: application/json
@@ -47,5 +46,3 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:8000/api/crime/delete/94525563-024a-45f5-8e2f-121b54cae2aa
-
-# http://localhost:8000/api/crime/de1b9585-5024-4bdf-9c09-973ba4849f68

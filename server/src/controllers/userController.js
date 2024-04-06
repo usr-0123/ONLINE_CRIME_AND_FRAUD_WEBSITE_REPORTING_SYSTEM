@@ -108,7 +108,7 @@ export const loginUser = async (req, res) => {
             return res.status(400).send(error.details[0].message);
         }
         const user = await loginService( Email_address, Password );
-        console.log("Logged user",user);
+        // console.log("Logged user",user);
         if (user.error) {
             return res.status(400).send(user.error);
         } else {
@@ -136,6 +136,7 @@ export const getUserById = async (req, res) => {
 export const deleteUser = async (req, res) => {
     try {
         const UserID = req.params.UserID;
+        
         if (await checkUser(req)) {
             const result = await deleteUserService( req.params.UserID );
             if (result.message) {
@@ -160,16 +161,13 @@ export const updateUser = async (req, res) => {
             return res.status(400).send(error.details[0].message);
         } else {
             if (await checkUser(req)) {
-                const { First_name, Last_name, Email_address, password } = req.body;
-
-                // console.log("logged req.body", req.body);
                 
-                const updatedUserData = { First_name, Last_name, Email_address, password };
+                const { First_name, Last_name, Email_address, password, ImageUrl } = req.body;
+
+                const updatedUserData = { First_name, Last_name, Email_address, password, ImageUrl };
 
                 const updateResult = await updateUserService(UserID, updatedUserData);
 
-                // console.log("Logged updateResult", updateResult);
-                
                 if (updateResult.message) {
                     return res.status(500).send({ "error": updateResult.message });
                 } else {

@@ -59,7 +59,6 @@ export const getCrimeByUID = async (req, res) => {
     try {
         const UserID = req.params.UserID;
         const Crime = await getCrimeByUIDService(UserID)
-        // console.log("Logged crime", Crime);
         if (crimeValidator.length === 0) {
             sendNotFound(res, 'Crime not found');
         } else {
@@ -90,14 +89,14 @@ export const deleteCrime = async (req, res) => {
 }
 
 export const addCrime = async (req, res) => {
-    const { UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity } = req.body;
-    const {error} = crimeValidator({ CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, UserID });
+    const { UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl } = req.body;
+    const {error} = crimeValidator({ CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, UserID, FileUrl });
     if (error) {
         return res.status(400).send(error.details[0].message)
     } else {
         try {
             const CrimeID = v4();
-            const newCrime = { CrimeID, UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity }
+            const newCrime = { CrimeID, UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl }
             const response = await addCrimeService(newCrime)
 
             if (response.message) {
@@ -108,9 +107,6 @@ export const addCrime = async (req, res) => {
                 const First_name = data[0].First_name
                 const Last_name = data[0].Last_name
                 
-                // console.log("Logged data for the user", data);
-                // console.log("Email_address", Email_address)
-
                 await sendMail(
                     Email_address,
                     First_name,
@@ -153,7 +149,6 @@ export const sendMail = async (
       },
     });
      
-    // Generate HTML string for the email content
     const crimeEmailTemp = `
     <!DOCTYPE html>
     <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
@@ -194,20 +189,13 @@ export const updateCrime = async (req, res) => {
     try {
         const CrimeID = req.params.CrimeID;
 
-        // console.log("Logged the req.params:", req.params);
-
         const CrimeToUpdate = await getCrimeByIDService(CrimeID)
-
-        // console.log("Logged the crime to update", CrimeToUpdate);
-
-        // console.log("Logged the req.body", req.body);
 
         if (CrimeToUpdate.length === 0) {
             sendNotFound(res, response.message)
         } else {
 
         const response = await updateCrimeService(CrimeID, req.body)
-        // console.log("Logged the response after update crime service", response);
 
         if (response.error) {
             sendNotFound(res, "Crime not found or not updated")
@@ -219,18 +207,11 @@ export const updateCrime = async (req, res) => {
     }
 }
 
-// Controller to update crime status
 export const updateCrimeStatus = async (req, res) => {
     try {
         const CrimeID = req.params.CrimeID;
 
-        // console.log("Logged the req.params:", req.params);
-
         const CrimeToUpdate = await getCrimeByIDService(CrimeID)
-
-        // console.log("Logged the crime to update", CrimeToUpdate);
-
-        // console.log("Logged the req.body", req.body);
 
         if (CrimeToUpdate.length === 0) {
             sendNotFound(res, response.message)
@@ -238,10 +219,7 @@ export const updateCrimeStatus = async (req, res) => {
 
             const { CrimeStatus } = req.body
 
-            // console.log("Logged the crime status entry fetched from the req.body", CrimeStatus);
-
         const response = await updateCrimeStatusService(CrimeID, CrimeStatus)
-        // console.log("Logged the response after update crime service", response);
 
         if (response.error) {
             sendNotFound(res, "Crime not found or not updated")

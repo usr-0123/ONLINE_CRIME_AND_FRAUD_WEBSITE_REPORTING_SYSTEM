@@ -8,7 +8,8 @@ export const crimeValidator = (crime) => {
         Involved_parties: joi.string().required(),
         Comment: joi.string().required(),
         Anonimity: joi.string().required(),
-        UserID: joi.string().required()
+        UserID: joi.string().required(),
+        FileUrl: joi.string().allow(''),
     })
     return crimeValidatorSchema.validate(crime)
 }

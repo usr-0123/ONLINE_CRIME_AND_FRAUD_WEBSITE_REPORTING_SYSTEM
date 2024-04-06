@@ -54,7 +54,8 @@ export const addCrimeService = async (crime) => {
         .input("Comment", sql.VarChar, crime.Comment)
         .input("Anonimity", sql.VarChar, crime.Anonimity)
         .input("UserID", sql.VarChar, crime.UserID)
-        .query("INSERT INTO Crime ( CrimeID,CrimeDate,CrimeTime,CrimeCategory,Involved_parties,Comment,Anonimity,UserID ) VALUES ( @CrimeID, @CrimeDate, @CrimeTime, @CrimeCategory, @Involved_parties, @Comment, @Anonimity, @UserID )")
+        .input("FileUrl", sql.VarChar, crime.FileUrl)
+        .query("INSERT INTO Crime ( CrimeID,CrimeDate,CrimeTime,CrimeCategory,Involved_parties,Comment,Anonimity,UserID,FileUrl ) VALUES ( @CrimeID, @CrimeDate, @CrimeTime, @CrimeCategory, @Involved_parties, @Comment, @Anonimity, @UserID, @FileUrl)")
         return result;
     } catch (error) {
         return error;
@@ -73,19 +74,16 @@ export const updateCrimeService = async (CrimeID, crime) => {
         .input("Comment", sql.VarChar, crime.Comment)
         .input("Anonimity", sql.VarChar, crime.Anonimity)
         .input("UserID", sql.VarChar, crime.UserID)
-        .query("UPDATE Crime SET CrimeStatus = @CrimeStatus, CrimeDate = @CrimeDate, CrimeTime = @CrimeTime, CrimeCategory = @CrimeCategory, Involved_parties = @Involved_parties, Comment = @Comment, Anonimity = @Anonimity WHERE CrimeID = @CrimeID")
-        // console.log("Logged the result", crime.CrimeStatus);
+        .input("FileUrl", sql.VarChar, crime.FileUrl)
+        .query("UPDATE Crime SET CrimeStatus = @CrimeStatus, CrimeDate = @CrimeDate, CrimeTime = @CrimeTime, CrimeCategory = @CrimeCategory, Involved_parties = @Involved_parties, Comment = @Comment, Anonimity = @Anonimity, FileUrl = @FileUrl WHERE CrimeID = @CrimeID")
         return result;
 
     } catch (error) {
-        // console.log("Logged the error available in the update service", error);
         return error;
     }
 }
 
-// Update the crime status
 export const updateCrimeStatusService = async (CrimeID, CrimeStatus) => {
-    // console.log("Logged the crimeStatus that was passed as a prop", CrimeStatus);
     try {
         const result = await poolRequest()
         .input("CrimeID", sql.VarChar, CrimeID)

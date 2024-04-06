@@ -41,7 +41,7 @@ const CrimeReports = () => {
 
     return <div> <BeatLoader /> </div>;
   }
-  if (isError) return <div>Error fetching crime entries.</div>;
+  if (isError) return <div style={{color:'#fff'}}>Error fetching crime entries.</div>;
 
   const handleEditIsClicked = (CrimeID) => {
     SuccessToast(`Edit a crime entry ${CrimeID} toggled`)

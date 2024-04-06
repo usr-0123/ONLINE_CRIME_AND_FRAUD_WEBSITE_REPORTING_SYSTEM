@@ -6,6 +6,7 @@ export const userValidator = (user) => {
         Last_name: joi.string().required(),
         Email_address: joi.string().email().required(),
         Password: joi.string().min(4).required(),
+        ImageUrl: joi.string().allow(''),
     });
     return registeruserSchema.validate(user);
 }
@@ -16,6 +17,7 @@ export const updateUserValidator = (user) => {
         Last_name: joi.string(),
         Email_address: joi.string().email(),
         Password: joi.string().min(4),
+        ImageUrl: joi.string(),
     });
     return updateUserSchema.validate(user);
 }

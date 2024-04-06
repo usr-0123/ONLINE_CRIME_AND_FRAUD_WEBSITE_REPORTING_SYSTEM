@@ -2,7 +2,6 @@ import { poolRequest, sql } from '../urilis/dbConnect.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-// Add a new User
 export const addUserServices = async (newUser) => {
     try {
         const result = await poolRequest()
@@ -20,7 +19,6 @@ export const addUserServices = async (newUser) => {
     }
 }
 
-// Login and generate token service
 export const loginService = async (Email_address, Password) => {
     try {
         const userResult = await poolRequest()
@@ -51,7 +49,6 @@ export const loginService = async (Email_address, Password) => {
     }
 }
 
-// Update user details
 export const updateUserService = async (UserID, updatedUserData) => {
     try {
         const result = await poolRequest()
@@ -61,14 +58,12 @@ export const updateUserService = async (UserID, updatedUserData) => {
             .input( 'Email_address', sql.VarChar, updatedUserData.Email_address )
             .input( 'Password', sql.VarChar, updatedUserData.Password)
             .query( "UPDATE tbl_Users SET First_name = @First_name, Last_name = @Last_name, Email_address = @Email_address, Password = @Password WHERE UserID = @UserID" );
-        // console.log("Querry results", updatedUserData.Password);
             return result;
     } catch (error) {
         return error;
     }
 }
 
-// Fetch user entry
 export const getUserByIdService = async (UserID) => {
     try {
         const result = await poolRequest()
@@ -80,7 +75,6 @@ export const getUserByIdService = async (UserID) => {
     }
 }
 
-// Delete a user entry
 export const deleteUserService = async (UserID) => {
     try {
         const result = await poolRequest()

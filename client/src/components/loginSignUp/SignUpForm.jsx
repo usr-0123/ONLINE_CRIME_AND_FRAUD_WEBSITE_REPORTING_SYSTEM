@@ -31,10 +31,6 @@ const SignUpForm = () => {
     setPassword(event.target.value);
   };
 
-  const storeUserDetailsInLocalStorage = (userData) => {
-    localStorage.setItem('userData', JSON.stringify(userData));
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -48,12 +44,9 @@ const SignUpForm = () => {
 
       if (response.data) {
 
-        const user = response.data.user;
-        storeUserDetailsInLocalStorage(user);
-
         SuccessToast('Registration successful. Now login')
 
-        navigate('/');
+        navigate('/login');
 
       } else {
         ErrorToast('Registration failed')
@@ -104,7 +97,7 @@ const SignUpForm = () => {
         />
       </div>
       <button type="submit" disabled={isLoading}>Register</button>
-      {isError && <div>Unable to register your details</div>}
+      {isError && <div style={{color:'#fff'}}>Unable to register your details</div>}
     </form>
   );
 };
