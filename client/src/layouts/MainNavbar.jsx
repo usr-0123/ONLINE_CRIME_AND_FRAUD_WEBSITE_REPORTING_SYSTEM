@@ -40,6 +40,7 @@ const MainNavbar = () => {
 
   const userItems = [
     { name: "Dashboard", path: "/mainPage" },
+    { name: "My Reports", path: "/myReports" },
     { name: "Track Crime", path: "/trackCrime" },
     { name: <FaRegUser style={{width:"30px", height:"30px"}}/>, path: "/profile" },
     { name: <TbLogout onClick={handleLogout} style={{width:"30px", height:"30px"}}/>, path: "/" }

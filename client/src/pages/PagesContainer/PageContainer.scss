@@ -4,7 +4,7 @@
     padding: 10px 0 0 0;
 
     .MainPageNew {
-        width: 30%;
+        width: 100%;
         padding: 10px;
         border-radius: 0 10px 10px 0;
         background-color: #103777;
@@ -85,19 +85,6 @@
                 background-color: #fff;
                 font-weight: 1000;
             }
-        }
-    }
-
-    .MainPageHistory {
-        width: 70%;
-        padding: 10px;
-        border-radius: 10px 0 0 10px;
-        background-color: #103777;
-
-        .MainPageNewHeader {
-            color: #fff;
-            font-size: 20px;
-            font-weight: 700;
         }
     }
 }

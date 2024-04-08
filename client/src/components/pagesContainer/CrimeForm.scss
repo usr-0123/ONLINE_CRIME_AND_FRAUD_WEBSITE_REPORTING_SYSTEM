@@ -14,9 +14,15 @@
 
     .NewCrimeForm {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
         gap: 10px;
+
+        .NewCrimeFormLeft {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            gap: 10px;
 
         .MainPageNewFormCrimeType {
             display: flex;
@@ -58,22 +64,58 @@
             }
         }
 
-        .MainPageNewFormEvidence {
+        .MainPageNewFormEvidense {
             display: flex;
-            align-items: center;
+            gap: 10px;
             width: 70%;
 
-            input {
-                padding: 10px;
+            label {
+                .uploadIcon {
+                    font-size: 30px;
+                    cursor: pointer;
+                }
             }
+
+            #fileInput {
+                display: none;
+            }
+
+            color: #fff;
         }
 
         button {
             padding: 10px;
+            width: 200px;
             border-radius: 10px;
             border: 1px solid #fff;
             background-color: #fff;
             font-weight: 1000;
         }
+    }
+    
+    .NewCrimeFormRight {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+
+        input {
+            padding: 10px;
+        }
+
+    .NewCrimeFormRightPreview {
+        width: 400px;
+        height: 300px;
+        background-color: #fff;
+        align-self: center;
+        border-radius: 5px;
+
+        img {
+            width: 400px;
+            height: 300px;
+            border-radius: 5px;
+        }
+    }
+    }
     }
 }

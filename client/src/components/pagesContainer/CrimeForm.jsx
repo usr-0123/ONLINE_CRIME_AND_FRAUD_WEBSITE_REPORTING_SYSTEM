@@ -3,6 +3,8 @@ import './CrimeForm.scss';
 import { useAddCrimeMutation, useUploadMutation } from '../../features/CrimeApi.js';
 import { SuccessToast, ErrorToast } from '../toaster/Toaster.jsx';
 import BeatLoader from 'react-spinners/BeatLoader';
+import { FaFileUpload } from "react-icons/fa";
+import Image from '../../assets/Snowy_white_background.jpeg'
 
 const CrimeForm = () => {
   const [crimeCategory, setCrimeCategory] = useState('');
@@ -53,8 +55,6 @@ const CrimeForm = () => {
       // Upload file first
       const { imageUrl } = await uploadImage();
 
-      console.log("logged the image url", imageUrl);
-
       // Prepare crime data with file URL
       const crimeData = {
         UserID: userId,
@@ -79,7 +79,7 @@ const CrimeForm = () => {
       setInvolvedParties('');
       setComment('');
       setAnonymity('');
-      setFile(null); // Reset file state
+      setFile(null);
     } catch (error) {
       console.error('Error while adding crime:', error);
       ErrorToast('Failed to report crime. Please try again.');
@@ -104,10 +104,13 @@ const CrimeForm = () => {
     "Online Auction Fraud"
   ];
 
+  console.log("logged image url", file.name);
+
   return (
     <div className='CrimeForm'>
       <span className='CrimeFormHeader'>Enter the details of the crime or fraud below:</span>
       <form className='NewCrimeForm' onSubmit={handleSubmit}>
+        <div className='NewCrimeFormLeft'>
         <div className='MainPageNewFormCrimeType'>
           <select name="Crime" value={crimeCategory} onChange={(e) => setCrimeCategory(e.target.value)}>
             <option value="">Select crime or fraud...</option>
@@ -131,10 +134,23 @@ const CrimeForm = () => {
           <input type="text" placeholder='Enter involved individuals or organisations...' value={involvedParties} onChange={(e) => setInvolvedParties(e.target.value)} />
           <input type="text" placeholder='Enter crime description...' value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
-        <div className='MainPageNewFormParties'>
-          <input type="file" id="fileInput" onChange={(e) => setFile(e.target.files[0])} />        </div>
+        <div className='MainPageNewFormEvidense'>
+          <label htmlFor="fileInput">
+            <FaFileUpload className='uploadIcon'/> Upload supporting evidense
+            <input type="file" id="fileInput" onChange={(e) => setFile(e.target.files[0])} />
+          </label>
+        </div>
         <button type="submit" disabled={isLoading}> {isLoading ? <BeatLoader color='#103777'/> : 'Submit Report'} </button>
+        </div>
+        <div className='NewCrimeFormRight'>
+          <div className='NewCrimeFormRightPreview'>
+          {
+                file ? <img src={URL.createObjectURL(file)} alt="profile" />
+                  : <img src={ Image } alt="profile" />
+              }
+          </div>
         {isError && <div style={{color:'#fff'}}>Please provide all the fields required</div>}
+        </div>        
       </form>
     </div>
   );

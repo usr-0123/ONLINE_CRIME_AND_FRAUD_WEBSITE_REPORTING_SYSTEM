@@ -14,6 +14,7 @@ import HowItWorks from './pages/PagesContainer/HowItWorks.jsx';
 import ContactUs from './pages/PagesContainer/ContactUs.jsx';
 import AboutUs from './pages/PagesContainer/AboutUs.jsx';
 import MainLayout from './layouts/MainLayout.jsx';
+import MyReports from './pages/PagesContainer/MyReports.jsx';
 
 function App() {
 

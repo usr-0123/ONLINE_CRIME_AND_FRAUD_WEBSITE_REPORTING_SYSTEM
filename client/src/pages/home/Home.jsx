@@ -6,6 +6,7 @@ import ContactUs from '../PagesContainer/ContactUs';
 import HowItWorks from '../PagesContainer/HowItWorks';
 import Profile from '../profile/Profile';
 import TrackCrime from '../PagesContainer/TrackCrime';
+import MyReports from '../PagesContainer/MyReports';
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -17,6 +18,7 @@ const Home = () => {
       <div className='mainContainer'>
         <Routes>
           <Route path='/mainPage' element = {<MainPage />} />
+          <Route path='/myReports' element = {<MyReports />} />
           <Route path='/trackCrime' element = {<TrackCrime />} />
           <Route path='/howItWorks' element = {<HowItWorks />} />
           <Route path='/contactUs' element = {<ContactUs />} />

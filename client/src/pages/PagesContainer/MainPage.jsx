@@ -11,12 +11,6 @@ const MainPage = () => {
       <div className='MainPageNew'>
         <CrimeForm />
       </div>
-      <div className='MainPageHistory'>
-        <span className='MainPageNewHeader'>Your Reported cases</span>
-        <div className='historyReports'>
-          <CrimeReports />
-        </div>
-      </div>
     </div>
   );
 };
