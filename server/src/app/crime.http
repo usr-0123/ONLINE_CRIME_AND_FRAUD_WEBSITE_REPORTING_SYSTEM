@@ -17,7 +17,7 @@ Content-Type:  application/json
 GET http://localhost:8000/api/crimes
 
 ###
-GET http://localhost:8000/api/crime/fetchByUID/c78631ac-4334-49e1-a2f2-3a3e09858d9a
+GET http://localhost:8000/api/crime/fetchByUID/ba4907e5-3cfe-4f6c-bed5-26397d251802
 
 ###
 GET http://localhost:8000/api/crime/c78631ac-4334-49e1-a2f2-3a3e09858d9a
@@ -45,7 +45,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/api/crime/reply/800ca141-18c1-46fe-8d1e-99b8515e8ae9
+PUT http://localhost:8000/api/crime/reply/cca62b81-49be-4f84-9970-ddd576b276df
 Content-Type: application/json
 
 {

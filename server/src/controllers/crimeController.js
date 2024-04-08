@@ -157,7 +157,7 @@ export const sendMail = async (
         <title>CRIME ACKNOWLEDGEMENT</title>
     </head>
     <body>
-        <p>Dear User ${First_name} ${Last_name},</p>
+        <p>Dear ${First_name} ${Last_name},</p>
         <p>We have recieved your case and we are working on it to resolve it as fast as possible</p>
         <p>The sent crime with the details below has been recieved:</p>
         <p>Crime date: ${CrimeDate} at ${CrimeTime}</p>
@@ -235,7 +235,9 @@ export const updateCrimeStatus = async (req, res) => {
 export const updateReply = async (req, res) => {
     try {
         const CrimeID = req.params.CrimeID;
-        const CrimeToReply = await getCrimeByIDService(CrimeID)
+        const CrimeToReply = await getCrimeByIDService(CrimeID);
+        const { UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl } = CrimeToReply;
+
         if (CrimeToReply.length === 0) {
             sendNotFound(res, response.message)
         } else {
@@ -246,10 +248,89 @@ export const updateReply = async (req, res) => {
             if (response.error) {
                 sendNotFound(res, "Crime not found or not replied")
             } else {
-                return sendCreated(res, "Reply send successfully!")
+                const data = await getUserByIdService(UserID)
+                const Email_address = data[0].Email_address;
+
+                await sendReplyMail(
+                    Email_address,
+                    CrimeID,
+                    CrimeDate,
+                    CrimeTime,
+                    CrimeCategory,
+                    Involved_parties,
+                    Comment,
+                    Anonimity,
+                    FileUrl
+                    )
+                    
+                return sendCreated(res, "Reply sent successfully!")
             }
         }
     } catch (error) {
         sendServerError(res, error.message)
     }
 }
+
+// Email upon registration
+export const sendReplyMail = async (
+    Email_address,
+    CrimeID,
+    CrimeDate,
+    CrimeTime,
+    CrimeCategory,
+    Involved_parties,
+    Comment,
+    Anonimity,
+    FileUrl
+    ) => {
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+     
+    const replyEmailTemp = `
+    <!DOCTYPE html>
+    <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+    <head>
+        <title>CRIME ACKNOWLEDGEMENT</title>
+    </head>
+    <body>
+        <p>Dear User,</p>
+        <p>This email is sent to you as a reply to your crime ${CrimeID}</p>
+        <p>We have been reviewing your crime report dated on ${CrimeDate} at ${CrimeTime}</p>
+        <p>The crime reported has the details below:</p>
+        <p>Crime category: ${CrimeCategory}</p>
+        <p>Involved parties reported are: ${Involved_parties}</p>
+        <p>The comment delivered is: ${Comment}</p>
+        <p>You anonimity is currently set to: ${Anonimity}</p>
+        <p>The current progress for your report is ${CrimeStatus}</p>
+        <p>Remember you can always track the stage of your case using the tracking number: ${CrimeID} </p>
+        <img src=${FileUrl} />
+        <Br>
+        <Br>
+        <Br>
+        <Br>
+        <p>We are sending you this email to reply on the case above</p>
+        <p>${Reply}</P>
+    </body>
+    </html>
+  `;
+     
+    const mailOptions = {
+      from: process.env.Email_address,
+      to: Email_address,
+      subject: "Reply to crime",
+      html: replyEmailTemp,
+    };
+     
+    try {
+      logger.info("Sending mail....");
+      await transporter.sendReplyMail(mailOptions);
+      logger.info("Email sent successfully!");
+    } catch (error) {
+      logger.error(error);
+    }
+    };
