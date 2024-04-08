@@ -3,6 +3,8 @@ import './CrimeReports.scss';
 import { useDeleteCrimeMutation, useGetCrimeByUidQuery } from '../../features/CrimeApi';
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { FaClipboard } from "react-icons/fa";
+import { FaClipboardCheck } from "react-icons/fa";
 
 import { ToasterContainer, SuccessToast, ErrorToast, LoadingToast } from '../toaster/Toaster';
 
@@ -10,8 +12,8 @@ import BeatLoader from 'react-spinners/BeatLoader'
 
 const CrimeReports = () => {
   const UserID = JSON.parse(localStorage.getItem('userData')).UserID;
-  const [showEditForm, setShowEditForm] = useState(false);
   const [crimeEntries, setCrimeEntries] = useState([]);
+  const [copiedCrimeID, setCopiedCrimeID] = useState(null);
   const { data: crimes, isError, isLoading } = useGetCrimeByUidQuery(UserID, { refetchOnReconnect: true });
 
   useEffect(() => {
@@ -33,6 +35,17 @@ const CrimeReports = () => {
     } catch (error) {
 
       console.error('Error deleting crime:', error);
+    }
+  };
+
+  const handleCopyCrimeID = async (CrimeID) => {
+    try {
+      await navigator.clipboard.writeText(CrimeID);
+      setCopiedCrimeID(CrimeID); // Set the copied CrimeID in state
+      SuccessToast(`Copied Crime ID ${CrimeID} to clipboard`);
+    } catch (error) {
+      console.error('Error copying Crime ID to clipboard:', error);
+      ErrorToast('Copy failed. Please try again.');
     }
   };
 
@@ -98,6 +111,15 @@ const CrimeReports = () => {
             <div className='AllReportEntries'>
               <button className='deleteButton' onClick={() => handleDeleteCrime(entry.CrimeID)}><MdDelete /></button>
               <button className='deleteButton' onClick={() => handleEditIsClicked(entry.CrimeID)}><FaEdit /></button>
+              {copiedCrimeID !== entry.CrimeID ? (
+                <span className='copyButton' onClick={() => handleCopyCrimeID(entry.CrimeID)}>
+                  <FaClipboard />
+                </span>
+              ) : (
+                <span className='copyButton' onClick={() => handleCopyCrimeID(entry.CrimeID)}>
+                  <FaClipboardCheck />
+                </span>
+              )}
             </div>
           </li>
         ))}
