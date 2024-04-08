@@ -51,7 +51,6 @@ const CrimeReports = () => {
 
   if (isLoading)
   {
-
     return <div> <BeatLoader /> </div>;
   }
   if (isError) return <div style={{color:'#fff'}}>Error fetching crime entries.</div>;
@@ -106,7 +105,7 @@ const CrimeReports = () => {
               <span>{entry.Comment}</span>
             </div>
             <div className='AllReportEntries'>
-              <span>{entry.Anonimity}</span>
+              {entry.Anonimity == "Anonimous" ? (<span>Anonimous</span>):(<span>Public</span>)}
             </div>
             <div className='AllReportEntries'>
               <button className='deleteButton' onClick={() => handleDeleteCrime(entry.CrimeID)}><MdDelete /></button>

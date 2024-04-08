@@ -3,7 +3,7 @@ POST http://localhost:8000/api/crime/add
 Content-Type:  application/json
 
 {
-    "UserID":"5d418375-2d31-48d6-93fc-6c3bc748dda7",
+    "UserID":"ba4907e5-3cfe-4f6c-bed5-26397d251802",
     "CrimeDate":"09-10-2024",
     "CrimeTime":"09:20 am",
     "CrimeCategory":"Testing update",
@@ -42,6 +42,14 @@ Content-Type: application/json
 
 {
     "CrimeStatus": "Resolved testing update"
+}
+
+###
+PUT http://localhost:8000/api/crime/reply/800ca141-18c1-46fe-8d1e-99b8515e8ae9
+Content-Type: application/json
+
+{
+    "Reply":"Your report has been submitted and has been handled"
 }
 
 ###

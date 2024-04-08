@@ -47,6 +47,15 @@ export const crimeApi = createApi({
             invalidatesTags: ['Crimes']
         }),
 
+        reply: builder.mutation({
+            query: (crime) => ({
+                url:`/crime/reply/${crime.CrimeID}`,
+                method: 'PUT',
+                body: crime
+            }),
+            invalidatesTags: ['Crimes']
+        }),
+
         updateCrimeStatus: builder.mutation({
             query: (crime) => ({
                 url: `crime/updateStatus/${crime.CrimeID}`,
@@ -62,7 +71,7 @@ export const crimeApi = createApi({
                 method: 'POST',
                 body: file
             })
-        }),
+        })
     })
 })
 
@@ -74,5 +83,6 @@ export const {
     useAddCrimeMutation,
     useUpdateCrimeMutation,
     useUpdateCrimeStatusMutation,
-    useUploadMutation
+    useUploadMutation,
+    useReplyMutation
 } = crimeApi;

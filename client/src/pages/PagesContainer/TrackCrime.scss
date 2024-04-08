@@ -37,8 +37,17 @@
             gap: 10px;
             width: 50%;
         }
-        .track-crime-data-left {
+        .track-crime-data-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 50%;
+
+            img {
+                height: 350px;
+                width: 500px;
+                border-radius: 5px;
+            }
         }
     }
 }

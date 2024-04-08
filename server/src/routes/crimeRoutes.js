@@ -7,6 +7,7 @@ import {
     getCrimeByUID,
     updateCrime,
     deleteCrime,
+    updateReply,
     updateCrimeStatus
 } from "../controllers/crimeController.js";
 
@@ -15,11 +16,10 @@ const crimeRouter = Router();
 crimeRouter.post('/crime/add', addCrime);
 crimeRouter.get('/crimes', getCrimes);
 crimeRouter.get('/crime/:CrimeID', getCrimeByID);
-
 crimeRouter.get('/crime/fetchByUID/:UserID', getCrimeByUID);
-
 crimeRouter.put('/crime/update/:CrimeID', updateCrime);
 crimeRouter.put('/crime/updateStatus/:CrimeID', updateCrimeStatus);
+crimeRouter.put('/crime/reply/:CrimeID', updateReply);
 crimeRouter.delete('/crime/delete/:CrimeID', deleteCrime);
 
 export default crimeRouter;

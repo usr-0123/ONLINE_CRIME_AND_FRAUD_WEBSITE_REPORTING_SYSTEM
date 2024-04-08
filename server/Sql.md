@@ -13,6 +13,25 @@ CREATE TABLE tbl_Users (
 
 ```
 
+``` sql
+
+CREATE TABLE Crime (
+    CrimeID VARCHAR(255) PRIMARY KEY,
+    CrimeDate VARCHAR(255),
+	CrimeTime VARCHAR(255),
+    CrimeCategory VARCHAR(255),
+	Involved_parties VARCHAR(999),
+	CrimeStatus VARCHAR(255) DEFAULT 'Submitted',
+	Reply VarChar(255),
+    Comment VARCHAR(999),
+    Anonimity VARCHAR(255),
+    FileUrl VARCHAR(255),
+    UserID VARCHAR(255),
+    FOREIGN KEY (UserID) REFERENCES tbl_Users (UserID)
+);
+
+```
+
 ## Users onboarding
 
 ``` sql
@@ -38,21 +57,3 @@ CREATE TABLE Categories (
 - Media
 - Anonimity status
 - Response email with ref number
-
-``` sql
-
-CREATE TABLE Crime (
-    CrimeID VARCHAR(255) PRIMARY KEY,
-    CrimeDate VARCHAR(255),
-	CrimeTime VARCHAR(255),
-    CrimeCategory VARCHAR(255),
-	Involved_parties VARCHAR(999),
-	CrimeStatus VARCHAR(255) DEFAULT 'Submitted',
-    Comment VARCHAR(999),
-    Anonimity VARCHAR(255),
-    UserID VARCHAR(255),
-    FOREIGN KEY (UserID) REFERENCES tbl_Users (UserID)
-);
-
-
-```

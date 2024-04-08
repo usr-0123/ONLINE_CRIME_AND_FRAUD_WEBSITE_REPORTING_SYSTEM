@@ -18,7 +18,8 @@ import {
     addCrimeService,
     updateCrimeService,
     getCrimeByUIDService,
-    updateCrimeStatusService
+    updateCrimeStatusService,
+    updateReplyService
 } from '../services/crimeService.js'
 
 import { crimeValidator } from '../validators/crimeValidators.js'
@@ -228,5 +229,27 @@ export const updateCrimeStatus = async (req, res) => {
         }
     }} catch (error) {
         sendServerError(res, error.message);
+    }
+}
+
+export const updateReply = async (req, res) => {
+    try {
+        const CrimeID = req.params.CrimeID;
+        const CrimeToReply = await getCrimeByIDService(CrimeID)
+        if (CrimeToReply.length === 0) {
+            sendNotFound(res, response.message)
+        } else {
+            const {Reply} = req.body;
+
+            const response = await updateReplyService(CrimeID, Reply)
+
+            if (response.error) {
+                sendNotFound(res, "Crime not found or not replied")
+            } else {
+                return sendCreated(res, "Reply send successfully!")
+            }
+        }
+    } catch (error) {
+        sendServerError(res, error.message)
     }
 }

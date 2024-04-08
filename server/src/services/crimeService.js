@@ -3,7 +3,12 @@ import { poolRequest, sql } from '../urilis/dbConnect.js'
 export const getCrimesService = async () => {
     try {
         const result = await poolRequest()
-        .query("SELECT * FROM Crime")
+        .query(
+            `SELECT Crime.CrimeID, Crime.CrimeDate, Crime.CrimeTime, Crime.CrimeCategory,
+                Crime.Involved_parties, Crime.CrimeStatus, Crime.Reply, Crime.Comment,Crime.Anonimity, Crime.FileUrl,
+                tbl_Users.UserID, tbl_Users.Email_address, tbl_Users.First_name, tbl_Users.Last_name, tbl_Users.User_rank
+            FROM Crime
+            INNER JOIN tbl_Users ON Crime.UserID = tbl_Users.UserID`)
         return result.recordset;
     } catch (error) {
         return error.message;
@@ -91,6 +96,18 @@ export const updateCrimeStatusService = async (CrimeID, CrimeStatus) => {
         .query("UPDATE Crime SET CrimeStatus = @CrimeStatus WHERE CrimeID = @CrimeID")
         return result;
 
+    } catch (error) {
+        return error;
+    }
+}
+
+export const updateReplyService = async (CrimeID, Reply) => {
+    try {
+        const result = await poolRequest()
+        .input("CrimeID", sql.VarChar, CrimeID)
+        .input("Reply", sql.VarChar, Reply)
+        .query("UPDATE Crime SET Reply = @Reply WHERE CrimeID = @CrimeID")
+        return result;
     } catch (error) {
         return error;
     }

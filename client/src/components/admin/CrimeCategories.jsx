@@ -68,7 +68,7 @@ const CrimeCategories = () => {
                                         <span>Ref Number</span>
                                         <span>Date</span>
                                         <span>Involved Parties</span>
-                                        <span>Involved Parties</span>
+                                        <span>Crime category</span>
                                         <span>Progress</span>
                                     </div>
                                 </li>

@@ -47,6 +47,20 @@
                 align-items: center;
                 padding: 10px;
 
+                .actionsTabReply {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: #fff;
+
+                    input {
+                        background-color: #fff;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 5px;
+                    }
+                }
+
                 button, select {
                     padding: 10px;
                     width: 100px;
