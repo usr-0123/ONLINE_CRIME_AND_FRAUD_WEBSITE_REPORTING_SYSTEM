@@ -8,6 +8,13 @@
     align-items: center;
     background-color: #0d2d5e;
 
+
+    .track-crime-header{
+        font-weight: bold;
+        color: #fff;
+        align-self: flex-start;
+    }
+
     .track-crime-input {
         width: 30%;
         padding: 10px;

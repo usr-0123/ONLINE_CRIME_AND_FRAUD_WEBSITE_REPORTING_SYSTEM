@@ -27,15 +27,14 @@ const TrackCrime = () => {
     setCrimeID(e.target.value);
   };
 
-  console.log("Logged entry data:", crimeData);
-
   return (
     <div className="track-crime">
+      <span className='track-crime-header'>Enter your tracking number to track the progress of your reported crime:</span>
       <input
         type="text"
         value={crimeID}
         onChange={handleInputChange}
-        placeholder="Enter Crime ID"
+        placeholder="Enter the tracking number here..."
         className='track-crime-input'
       />
 
