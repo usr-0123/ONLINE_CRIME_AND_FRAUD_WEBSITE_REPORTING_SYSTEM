@@ -43,17 +43,21 @@ const TrackCrime = () => {
       
       {crimeData && crimeData.length > 0 ? (
           <div className='track-crime-data'>
+            <div className='track-crime-data-left'>
             <span>
               <h2>Crime Details</h2>
             </span>
             <span>
-              <p>Anonymity status: {crimeData[0].Anonymity}</p>
+              <p>Anonymity status: {crimeData[0].Anonimity}</p>
             </span>
             <span>
               <p>Report Progress: {crimeData[0].CrimeStatus}</p>
             </span>
             <span>
               <p>Crime Date: {crimeData[0].CrimeDate}</p>
+            </span>
+            <span>
+              <p>Crime Time: {crimeData[0].CrimeTime}</p>
             </span>
             <span>
               <p>Category: {crimeData[0].CrimeCategory}</p>
@@ -64,6 +68,10 @@ const TrackCrime = () => {
             <span>
               <p>Comments: {crimeData[0].Comment}</p>
             </span>
+            </div>
+            <div className='track-crime-data-right'>
+              <img src={crimeData[0].FileUrl} alt="" />
+            </div>
           </div>
         ) : (
           <div style={{color:'#fff'}}>There is no entries for the tracking number entered</div>

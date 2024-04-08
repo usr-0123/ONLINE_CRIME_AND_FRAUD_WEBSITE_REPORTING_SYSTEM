@@ -17,11 +17,21 @@
 
     .track-crime-data {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
         gap: 10px;
         padding: 10px;
         background-color: #fff;
         border-radius: 5px;
+        width: 100%;
+
+        .track-crime-data-left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 50%;
+        }
+        .track-crime-data-left {
+            width: 50%;
+        }
     }
 }

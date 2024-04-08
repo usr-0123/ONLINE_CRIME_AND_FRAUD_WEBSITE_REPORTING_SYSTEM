@@ -4,7 +4,7 @@ import { useAddCrimeMutation, useUploadMutation } from '../../features/CrimeApi.
 import { SuccessToast, ErrorToast } from '../toaster/Toaster.jsx';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { FaFileUpload } from "react-icons/fa";
-import Image from '../../assets/Snowy_white_background.jpeg'
+import Image from '../../assets/upload-template.jpg'
 
 const CrimeForm = () => {
   const [crimeCategory, setCrimeCategory] = useState('');
@@ -103,8 +103,6 @@ const CrimeForm = () => {
     "Social Engineering",
     "Online Auction Fraud"
   ];
-
-  console.log("logged image url", file.name);
 
   return (
     <div className='CrimeForm'>
