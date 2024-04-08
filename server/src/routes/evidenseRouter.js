@@ -16,19 +16,8 @@ const storage = multer.diskStorage({
 
 const uploadToUser = multer({ storage });
 
-uploadImageRouter.post('/upload-evidence', uploadToUser.single('file'), (req, res) => {
-
-  try {
-    const imageUrl = `http://localhost:8000/photos/crimes/${req.file.filename}`;
-
-    res.status(201).json({ imageUrl });
-
-  } catch (error) {
-    console.error('Error uploading file:', error);
-    res.status(500).json({ error: 'Failed to upload file' });
-
-  }
-
+uploadImageRouter.post('/upload-evidense', uploadToUser.single('file'), (req, res) => {
+  res.send({ imageUrl: `http://localhost:8000/photos/crimes/${req.file.filename}` });
 });
 
 export default uploadImageRouter;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CrimeForm.scss';
 import { useAddCrimeMutation, useUploadMutation } from '../../features/CrimeApi.js';
 import { SuccessToast, ErrorToast } from '../toaster/Toaster.jsx';
@@ -16,16 +16,44 @@ const CrimeForm = () => {
   const [addCrime, { isLoading, isError }] = useAddCrimeMutation();
   const [upload] = useUploadMutation();
 
+  const validateImage = (file) => {
+    if (file) {
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (validTypes.indexOf(file.type) === -1) {
+        setFile(null);
+        ErrorToast('File format is incorrect use .jpeg, .pnp or .jpg')
+      } else if (file.size > 1024 * 1024 * 5) {
+        setFile(null);
+        ErrorToast('File size is too large')
+      } else {
+        return true;
+      }
+    }
+  }
+
+  useEffect(() => {
+    validateImage(file)
+  }, [file]);
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
+
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return await upload(formData).unwrap();
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       // Upload file first
-      const { data: imageUrl } = await upload(file);
+      const { imageUrl } = await uploadImage();
+
+      console.log("logged the image url", imageUrl);
 
       // Prepare crime data with file URL
       const crimeData = {
@@ -104,8 +132,7 @@ const CrimeForm = () => {
           <input type="text" placeholder='Enter crime description...' value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
         <div className='MainPageNewFormParties'>
-          <input type="file" onChange={handleFileChange} />
-        </div>
+          <input type="file" id="fileInput" onChange={(e) => setFile(e.target.files[0])} />        </div>
         <button type="submit" disabled={isLoading}> {isLoading ? <BeatLoader color='#103777'/> : 'Submit Report'} </button>
         {isError && <div style={{color:'#fff'}}>Please provide all the fields required</div>}
       </form>
