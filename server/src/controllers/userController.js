@@ -72,17 +72,40 @@ export const sendMail = async (Email_address, First_name, Last_name ) => {
     // Generate HTML string for the email content
     const emailTemp = `
     <!DOCTYPE html>
-    <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+    <html lang="en">
     <head>
-        <title>THANK YOU FOR REGISTERING TO ONLINE REPORTING SYSTEM!</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thank You for Registering to Online Reporting System!</title>
     </head>
-    <body>
-        <p>Dear ${First_name} ${Last_name},</p>
-        <p>We're excited to have you as a member!</p>
-        <p>Report any of the online issues that you encounter, to us anytime and get a confirmation email for your report with a reference number to track the progress</p>
+    
+    <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; padding: 20px;">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center" bgcolor="#ffffff" style="padding: 40px; border-radius: 10px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td align="center" style="padding-bottom: 20px;">
+                            <h1 style="color: #007bff;">Thank You for Registering!</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-size: 16px; line-height: 1.6;">Dear ${First_name} ${Last_name},</p>
+                            <p style="font-size: 16px; line-height: 1.6;">We're thrilled to welcome you as a member of our Online Reporting System!</p>
+                            <p style="font-size: 16px; line-height: 1.6;">You can now report any online issues you encounter to us anytime. Each report will be acknowledged with a confirmation email containing a reference number to track its progress.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
     </body>
     </html>
-  `;
+    `;
      
     const mailOptions = {
       from: process.env.Email_address,
