@@ -130,7 +130,7 @@ export const addCrime = async (req, res) => {
 }
 
 // Email upon registration
-export const sendMail = async (
+export const sendRegistrationMail = async (
     Email_address,
     First_name,
     Last_name,
@@ -184,7 +184,7 @@ export const sendMail = async (
     } catch (error) {
       logger.error(error);
     }
-    };
+    }; 
 
 export const updateCrime = async (req, res) => {
     try {
@@ -236,7 +236,8 @@ export const updateReply = async (req, res) => {
     try {
         const CrimeID = req.params.CrimeID;
         const CrimeToReply = await getCrimeByIDService(CrimeID);
-        const { UserID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl } = CrimeToReply;
+        const user_id = CrimeToReply[0].UserID
+        const { CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl, CrimeStatus } = CrimeToReply[0];
 
         if (CrimeToReply.length === 0) {
             sendNotFound(res, response.message)
@@ -248,7 +249,7 @@ export const updateReply = async (req, res) => {
             if (response.error) {
                 sendNotFound(res, "Crime not found or not replied")
             } else {
-                const data = await getUserByIdService(UserID)
+                const data = await getUserByIdService(user_id)
                 const Email_address = data[0].Email_address;
 
                 await sendReplyMail(
@@ -260,7 +261,9 @@ export const updateReply = async (req, res) => {
                     Involved_parties,
                     Comment,
                     Anonimity,
-                    FileUrl
+                    FileUrl,
+                    CrimeStatus,
+                    Reply
                     )
                     
                 return sendCreated(res, "Reply sent successfully!")
@@ -281,7 +284,9 @@ export const sendReplyMail = async (
     Involved_parties,
     Comment,
     Anonimity,
-    FileUrl
+    FileUrl,
+    CrimeStatus,
+    Reply
     ) => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -320,7 +325,7 @@ export const sendReplyMail = async (
   `;
      
     const mailOptions = {
-      from: process.env.Email_address,
+      from: process.env.EMAIL,
       to: Email_address,
       subject: "Reply to crime",
       html: replyEmailTemp,
@@ -328,7 +333,7 @@ export const sendReplyMail = async (
      
     try {
       logger.info("Sending mail....");
-      await transporter.sendReplyMail(mailOptions);
+      await transporter.sendMail(mailOptions)
       logger.info("Email sent successfully!");
     } catch (error) {
       logger.error(error);
