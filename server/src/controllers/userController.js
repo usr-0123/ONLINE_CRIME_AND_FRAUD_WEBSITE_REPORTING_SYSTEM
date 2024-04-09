@@ -3,26 +3,11 @@ import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
 import logger from '../urilis/logger.js'
 
-import {
-    userValidator,
-    userLoginValidator,
-    updateUserValidator
-} from '../validators/userValidators.js';
+import { userValidator, userLoginValidator, updateUserValidator } from '../validators/userValidators.js';
 
-import {
-    addUserServices,
-    loginService,
-    getUserByIdService,
-    deleteUserService,
-    updateUserService
-} from '../services/userService.js';
+import { addUserServices, loginService, getUserByIdService, deleteUserService, updateUserService } from '../services/userService.js';
 
-import {
-    sendServerError,
-    sendCreated,
-    sendDeleteSuccess,
-    sendNotFound
-} from '../helpers/helperFunctions.js';
+import { sendServerError, sendCreated, sendDeleteSuccess, sendNotFound } from '../helpers/helperFunctions.js';
 
 const checkUser = async (req) => {
     const UserID = req.params.UserID;

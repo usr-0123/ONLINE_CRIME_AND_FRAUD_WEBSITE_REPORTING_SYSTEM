@@ -2,25 +2,9 @@ import { v4 } from 'uuid'
 import nodemailer from 'nodemailer'
 import logger from '../urilis/logger.js'
 
-import {
-    sendNotFound,
-    sendBadRequest,
-    sendCreated,
-    sendSuccess,
-    sendDeleteSuccess,
-    sendServerError
-} from '../helpers/helperFunctions.js'
+import { sendNotFound, sendBadRequest, sendCreated, sendSuccess, sendDeleteSuccess, sendServerError } from '../helpers/helperFunctions.js'
 
-import {
-    getCrimesService,
-    getCrimeByIDService,
-    deleteCrimeService,
-    addCrimeService,
-    updateCrimeService,
-    getCrimeByUIDService,
-    updateCrimeStatusService,
-    updateReplyService
-} from '../services/crimeService.js'
+import { getCrimesService, getCrimeByIDService, deleteCrimeService, addCrimeService, updateCrimeService, getCrimeByUIDService, updateCrimeStatusService, updateReplyService } from '../services/crimeService.js'
 
 import { crimeValidator } from '../validators/crimeValidators.js'
 
@@ -108,18 +92,7 @@ export const addCrime = async (req, res) => {
                 const First_name = data[0].First_name
                 const Last_name = data[0].Last_name
                 
-                await sendRegistrationMail(
-                    Email_address,
-                    First_name,
-                    Last_name,
-                    CrimeID,
-                    CrimeDate,
-                    CrimeTime,
-                    CrimeCategory,
-                    Involved_parties,
-                    Comment,
-                    Anonimity
-                    )
+                await sendRegistrationMail( Email_address, First_name, Last_name, CrimeID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity )
                 
                 sendCreated(res, "Crime entry created successfully")
             }
@@ -130,18 +103,8 @@ export const addCrime = async (req, res) => {
 }
 
 // Email upon registration
-export const sendRegistrationMail = async (
-    Email_address,
-    First_name,
-    Last_name,
-    CrimeID,
-    CrimeDate,
-    CrimeTime,
-    CrimeCategory,
-    Involved_parties,
-    Comment,
-    Anonimity
-    ) => {
+export const sendRegistrationMail = async ( Email_address, First_name, Last_name, CrimeID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity ) => {
+    
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -225,7 +188,7 @@ export const sendRegistrationMail = async (
     } catch (error) {
       logger.error(error);
     }
-    }; 
+}; 
 
 export const updateCrime = async (req, res) => {
     try {
@@ -293,19 +256,7 @@ export const updateReply = async (req, res) => {
                 const data = await getUserByIdService(user_id)
                 const Email_address = data[0].Email_address;
 
-                await sendReplyMail(
-                    Email_address,
-                    CrimeID,
-                    CrimeDate,
-                    CrimeTime,
-                    CrimeCategory,
-                    Involved_parties,
-                    Comment,
-                    Anonimity,
-                    FileUrl,
-                    CrimeStatus,
-                    Reply
-                    )
+                await sendReplyMail( Email_address, CrimeID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl, CrimeStatus, Reply )
                     
                 return sendCreated(res, "Reply sent successfully!")
             }
@@ -316,19 +267,8 @@ export const updateReply = async (req, res) => {
 }
 
 // Email upon registration
-export const sendReplyMail = async (
-    Email_address,
-    CrimeID,
-    CrimeDate,
-    CrimeTime,
-    CrimeCategory,
-    Involved_parties,
-    Comment,
-    Anonimity,
-    FileUrl,
-    CrimeStatus,
-    Reply
-    ) => {
+export const sendReplyMail = async ( Email_address, CrimeID, CrimeDate, CrimeTime, CrimeCategory, Involved_parties, Comment, Anonimity, FileUrl, CrimeStatus, Reply ) => {
+    
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -397,7 +337,7 @@ export const sendReplyMail = async (
                 <blockquote>${Reply}</blockquote>
             </div>
         </body>
-        
+
     </html>`;
      
     const mailOptions = {
@@ -414,4 +354,4 @@ export const sendReplyMail = async (
     } catch (error) {
       logger.error(error);
     }
-    };
+};
