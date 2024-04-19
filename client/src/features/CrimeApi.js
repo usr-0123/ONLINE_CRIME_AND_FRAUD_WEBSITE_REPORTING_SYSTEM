@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const getToken = () => {
+    return localStorage.getItem('loginToken')
+}
+
+console.log("logged the function that gets the token", getToken());
+
 export const crimeApi = createApi({
     reducerPath: 'crimeApi',
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:8000/api/'}),
@@ -8,7 +14,7 @@ export const crimeApi = createApi({
 
         getCrimes: builder.query({
             query: () => 'crimes',
-            providesTags: ['Crimes']
+            providesTags: ['Crimes'],
         }),
 
         getCrimeByID: builder.query({
@@ -38,11 +44,22 @@ export const crimeApi = createApi({
             invalidatesTags: ['Crimes']
         }),
 
+        contactUs: builder.mutation({
+            query: (contact) => ({
+                url: 'crime/contactUs',
+                method: 'POST',
+                body: contact
+            }),
+        }),
+
         updateCrime: builder.mutation({
             query: (crime)=>({
                 url:`crime/update/${crime.CrimeID}`,
                 method: 'PUT',
-                body: crime
+                body: crime,
+                // headers: {
+                    // Authorization: `token`,
+                // }
             }),
             invalidatesTags: ['Crimes']
         }),
@@ -79,6 +96,7 @@ export const {
     useGetCrimesQuery,
     useGetCrimeByIDQuery,
     useGetCrimeByUidQuery,
+    useContactUsMutation,
     useDeleteCrimeMutation,
     useAddCrimeMutation,
     useUpdateCrimeMutation,

@@ -29,20 +29,28 @@ const LoginForm = () => {
     localStorage.setItem('userData', JSON.stringify(userData));
   };
 
+  const storeUserToken = (token) => {
+    localStorage.setItem('loginToken', JSON.stringify(token))
+  };
+
   const handleSubmit = async (event) => {
 
     event.preventDefault();
     try {
 
       const response = await authenticateUser({ Email_address: email, Password: password });
-  
+
       if (response.data) {
 
         const user = response.data.user;
 
-        const User_rank = (response.data.user.User_rank)
+        const token = response.data.token
 
         storeUserDetailsInLocalStorage(user);
+        
+        storeUserToken(token);
+
+        const User_rank = (response.data.user.User_rank)
 
         if (User_rank === "User") {
           navigate('/mainPage');
@@ -52,8 +60,9 @@ const LoginForm = () => {
           navigate('/admin/adminDashboard');
           SuccessToast('Login succesful. You logged in as an Admin')
         }
-      } else {
-        ErrorToast('Login credentials incorrect!')
+      } else if (response.error){
+        const Message = response.error.data;
+        ErrorToast(`${Message}`)
       }
     } catch (error) {
       console.error('Error during authentication:', error);

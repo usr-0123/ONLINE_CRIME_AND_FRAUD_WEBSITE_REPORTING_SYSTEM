@@ -168,6 +168,9 @@ export const sendRegistrationMail = async ( Email_address, First_name, Last_name
             <div class="footer">
                 <p>You can track the progress of your case using the provided tracking number. For any inquiries or updates, feel free to contact us.</p>
                 <p>Thank you for your cooperation.</p>
+                
+                <p style="font-size: 16px; line-height: 1.6;">For all software solutions including email templates and integration kindly contact us today:</p>
+                <h1 style="color: #007bff;">Lewis Kemboi<br>Managing Director<br>Luwi software solutions<br>call, sms or WhatsApp us today: 0701282658</h1>
             </div>
         </div>
     </body>
@@ -336,6 +339,10 @@ export const sendReplyMail = async ( Email_address, CrimeID, CrimeDate, CrimeTim
                 <p>We are sending you this email in response to your case. Here's our reply:</p>
                 <blockquote>${Reply}</blockquote>
             </div>
+            <div>
+                <p style="font-size: 16px; line-height: 1.6;">For all software solutions including email templates and integration kindly contact us today:</p>
+                <h1 style="color: #007bff;">Lewis Kemboi<br>Managing Director<br>Luwi software solutions<br>call, sms or WhatsApp us today: 0701282658</h1>
+            </div>
         </body>
 
     </html>`;
@@ -355,3 +362,98 @@ export const sendReplyMail = async ( Email_address, CrimeID, CrimeDate, CrimeTim
       logger.error(error);
     }
 };
+
+// Contact us emails
+export const contactUS = async (req, res) => {
+    try {
+
+        const { Full_name, Email_address, Subject, Comments } = req.body;
+
+        await sendContactUsMail ( Full_name, Email_address, Subject, Comments )
+
+        return sendCreated(res, "Email sent successfully")
+
+    } catch (error) {
+
+        sendServerError(res, error.message)
+
+    }
+}
+
+const sendContactUsMail = async ( Full_name, Email_address, Subject, Comments ) => {
+
+    let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD,
+        },
+    });
+
+    const contactUsEmailTemp = 
+    `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reply to Your Inquiry</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; padding: 20px;">
+
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="center" bgcolor="#ffffff" style="padding: 40px; border-radius: 10px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="center" style="padding-bottom: 20px;">
+                                <h1 style="color: #007bff;">Reply to Your Inquiry</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="font-size: 16px; line-height: 1.6;">Dear ${Full_name},</p>
+                                <p style="font-size: 16px; line-height: 1.6;">Thank you for reaching out to us regarding our Online Crime Report System.</p>
+                                <p style="font-size: 16px; line-height: 1.6;">We have received your message about ${Subject} and will respond to your inquiry promptly.</p>
+                                <Br>
+                                <Br>
+                                <Br>
+                                <p>----------</p>
+                                <p style="font-size: 20px;">${Subject}</p>
+                                <Br>
+                                ${Comments}
+                                <Br>
+                                <p>----------</p>
+                                <p>Your feedback is important to us as we continuously strive to improve our services.</p>
+                                <p style="font-size: 16px; line-height: 1.6;">If you have any urgent concerns or require immediate assistance, please feel free to contact us directly.</p>
+                                <p style="font-size: 16px; line-height: 1.6;">Thank you for your patience and understanding.</p>
+                                <br>
+                                <p style="font-size: 16px; line-height: 1.6;">Best regards,</p>
+                                <p style="font-size: 16px; line-height: 1.6;">For all software solutions including email templates and integration kindly contact us today:</p>
+                                <h1 style="color: #007bff;">Lewis Kemboi<br>Managing Director<br>Luwi software solutions<br>call, sms or WhatsApp us today: 0701282658</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
+    `
+
+    const mailOptions = {
+        from: process.env.EMAIL,
+        to: Email_address,
+        subject: `Thank you ${ Full_name } for contacting us`,
+        html: contactUsEmailTemp,
+    };
+
+    try {
+        logger.info("Sending mail....");
+        await transporter.sendMail(mailOptions)
+        logger.info("Email sent successfully!");
+    } catch (error) {
+        logger.error(error);
+    }
+}

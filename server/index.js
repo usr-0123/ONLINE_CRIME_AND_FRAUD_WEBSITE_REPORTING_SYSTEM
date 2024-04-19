@@ -8,6 +8,8 @@ import userRouter from './src/routes/userRoutes.js';
 import crimeRouter from './src/routes/crimeRoutes.js';
 import evidenseRouter from './src/routes/evidenseRouter.js';
 
+import rateLimitMiddleware from './src/middlewares/rateLimitMiddleware.js';
+
 dotenv.config();
 
 const PORT = process.env.API_PORT || 3500;
@@ -21,6 +23,7 @@ var corsOptions = {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+// rateLimitMiddleware(app)
 
 //public folder
 app.use('/photos/crimes', express.static('src/photos/crimes'));

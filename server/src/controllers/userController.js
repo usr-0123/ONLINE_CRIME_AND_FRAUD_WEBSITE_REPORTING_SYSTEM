@@ -44,7 +44,6 @@ export const registerUser = async (req, res) => {
     }
 }
 
-// Email upon registration
 export const sendMail = async (Email_address, First_name, Last_name ) => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -54,7 +53,6 @@ export const sendMail = async (Email_address, First_name, Last_name ) => {
       },
     });
      
-    // Generate HTML string for the email content
     const emailTemp = `
     <!DOCTYPE html>
     <html lang="en">
@@ -87,6 +85,9 @@ export const sendMail = async (Email_address, First_name, Last_name ) => {
             </td>
         </tr>
     </table>
+
+        <p style="font-size: 16px; line-height: 1.6;">For all software solutions including email templates and integration kindly contact us today:</p>
+        <h1 style="color: #007bff;">Lewis Kemboi<br>Managing Director<br>Luwi software solutions<br>call, sms or WhatsApp us today: 0701282658</h1>
 
     </body>
     </html>

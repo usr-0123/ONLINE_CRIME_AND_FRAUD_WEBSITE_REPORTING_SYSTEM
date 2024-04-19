@@ -64,6 +64,17 @@ export const updateUserService = async (UserID, updatedUserData) => {
     }
 }
 
+export const updateProfilePicture = async (UserID, imageUrl) => {
+    try {
+        const result = await poolRequest()
+        .input('UserID', sql.VarChar, UserID)
+        .input('ImageUrl', sql.VarChar, imageUrl.ImageUrl)
+        .query("update tbl_Users SET ImageUrl = @ImageUrl WHERE ")
+    } catch (error) {
+        
+    }
+}
+
 export const getUserByIdService = async (UserID) => {
     try {
         const result = await poolRequest()

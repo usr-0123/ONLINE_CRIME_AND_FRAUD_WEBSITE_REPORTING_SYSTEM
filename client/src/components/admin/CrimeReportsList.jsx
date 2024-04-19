@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './CrimeReportsList.scss';
 import { IoSend } from 'react-icons/io5';
 import { useUpdateCrimeStatusMutation, useDeleteCrimeMutation, useGetCrimesQuery, useReplyMutation } from '../../features/CrimeApi';
-import { ErrorToast, SuccessToast } from '../toaster/Toaster';
+import { LoadingToast, ErrorToast, SuccessToast } from '../toaster/Toaster';
 import BeatLoader from 'react-spinners/BeatLoader';
 
 const CrimeReports = () => {
@@ -26,9 +26,14 @@ const CrimeReports = () => {
 
   const handleUpdate = async (crimeID) => {
     try {
+      if (selectedStatus == '') {
+        ErrorToast('Please select a crime status to update')
+      } else {
       await updateCrimeStatusMutation({ CrimeID: crimeID, CrimeStatus: selectedStatus });
       SuccessToast(`Crime status updated successfully to: ${selectedStatus}`);
+      setSelectedStatus('')
       refetch();
+    }
     } catch (error) {
       ErrorToast('There was an error updating the crime status');
       console.error('Error updating entry:', error);
@@ -37,10 +42,14 @@ const CrimeReports = () => {
 
   const handleReply = async (crimeID) => {
     try {
+      if (replyText == '') {
+        ErrorToast('Please enter reply content')
+      } else {
       await replyMutation({ CrimeID: crimeID, Reply: replyText });
       SuccessToast('Reply added successfully');
       setReplyText('');
       refetch();
+    }
     } catch (error) {
       ErrorToast('There was an error adding reply');
       console.error('Error adding reply:', error);
@@ -48,6 +57,7 @@ const CrimeReports = () => {
   };
 
   if (isLoading) {
+    LoadingToast(true)
     return <BeatLoader />;
   }
 
@@ -104,7 +114,7 @@ const CrimeReports = () => {
                   <div className="actionsTab">
                     <div className="actionsTabReply">
                       <input type="text" placeholder="Enter reply..." value={replyText} onChange={(e) => setReplyText(e.target.value)} />
-                      <IoSend style={{ fontSize: '25px' }} onClick={() => handleReply(entry.CrimeID)} />
+                      {replyText !== '' && ( <IoSend style={{ fontSize: '25px' }} onClick={() => handleReply(entry.CrimeID)} /> )}
                     </div>
                     <div className="actionsTabInput">
                       <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
@@ -115,7 +125,7 @@ const CrimeReports = () => {
                         <option value="Matter forwarded to the EACC">Matter forwarded to the EACC</option>
                         <option value="Conflicted parties contacted">Conflicted parties contacted</option>
                       </select>
-                      <button onClick={() => handleUpdate(entry.CrimeID)}>Update</button>
+                      {selectedStatus !== '' && ( <button onClick={() => handleUpdate(entry.CrimeID)}>Update</button> )}
                     </div>
                     <button onClick={() => handleDelete(entry.CrimeID)}>Delete</button>
                   </div>

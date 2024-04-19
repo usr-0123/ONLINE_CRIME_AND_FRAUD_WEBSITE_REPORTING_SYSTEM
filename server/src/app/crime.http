@@ -15,6 +15,7 @@ Content-Type:  application/json
 
 ###
 GET http://localhost:8000/api/crimes
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbF9hZGRyZXNzIjoia2VtYm9pbGV3aXM2QGdtYWlsLmNvbSIsIkZpcnN0X25hbWUiOiJMZXdpcyIsIkxhc3RfbmFtZSI6IktlbWJvaSIsIlVzZXJJRCI6IjVkNDE4Mzc1LTJkMzEtNDhkNi05M2ZjLTZjM2JjNzQ4ZGRhNyIsIlVzZXJfcmFuayI6IkFkbWluIiwiaWF0IjoxNzEzNTE3NTU3LCJleHAiOjE3MTM2OTAzNTd9.Ckk-Vu3gc8n1kEOJkeW3eqoOYXqmuvdM-aGB1GAu6F4
 
 ###
 GET http://localhost:8000/api/crime/fetchByUID/ba4907e5-3cfe-4f6c-bed5-26397d251802
@@ -50,6 +51,18 @@ Content-Type: application/json
 
 {
     "Reply":"Your report has been submitted and has been handled"
+}
+
+# /crime/contactUs
+###
+POST http://localhost:8000/api/crime/contactUs
+Content-Type: application/json
+
+{
+    "Full_name":"Lewis testing",
+    "Email_address":"kemboilewis6@gmail.com",
+    "Subject":"Test",
+    "Comments":"Test"
 }
 
 ###

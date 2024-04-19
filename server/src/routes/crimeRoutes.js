@@ -8,8 +8,11 @@ import {
     updateCrime,
     deleteCrime,
     updateReply,
-    updateCrimeStatus
+    updateCrimeStatus,
+    contactUS
 } from "../controllers/crimeController.js";
+
+import { authMiddleware } from "../middlewares/userAuthMiddleware.js";
 
 const crimeRouter = Router();
 
@@ -20,6 +23,7 @@ crimeRouter.get('/crime/fetchByUID/:UserID', getCrimeByUID);
 crimeRouter.put('/crime/update/:CrimeID', updateCrime);
 crimeRouter.put('/crime/updateStatus/:CrimeID', updateCrimeStatus);
 crimeRouter.put('/crime/reply/:CrimeID', updateReply);
+crimeRouter.post('/crime/contactUs', contactUS);
 crimeRouter.delete('/crime/delete/:CrimeID', deleteCrime);
 
 export default crimeRouter;

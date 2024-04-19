@@ -138,7 +138,7 @@ const CrimeForm = () => {
             <input type="file" id="fileInput" onChange={(e) => setFile(e.target.files[0])} />
           </label>
         </div>
-        <button type="submit" disabled={isLoading}> {isLoading ? <BeatLoader color='#103777'/> : 'Submit Report'} </button>
+        <button type="submit" disabled={isLoading}> {isLoading ? <BeatLoader /> : 'Submit Report'} </button>
         </div>
         <div className='NewCrimeFormRight'>
           <div className='NewCrimeFormRightPreview'>
