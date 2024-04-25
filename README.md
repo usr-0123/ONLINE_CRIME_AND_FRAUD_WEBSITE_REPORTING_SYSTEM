@@ -1,5 +1,7 @@
 ![Preview](/Screenshot.png)
 
+# Get started
+
 ```
 pnpm install
 ```
